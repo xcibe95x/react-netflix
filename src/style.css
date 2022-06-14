@@ -1,0 +1,104 @@
+/* Fonts */
+
+@font-face {
+  font-family: "Netflix Sans";
+  src: url("../public/assets/fonts/NetflixSansBold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Netflix Sans";
+  src: url("../public/assets/fonts/NetflixSansRegular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Variables */
+:root {
+  /* Netflix Default Palette */
+  --white: #fff;
+  --clearwhite: rgba(255, 255, 255, 0.3);
+  --smokeWhite: #e5e5e5;
+  --midgray: rgb(109, 109, 110, 0.3);
+  --gray: #808080;
+  --black: #141414;
+  --red: #b9090b;
+  /* Bonus Colors */
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  /* Event Colors */
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+}
+
+/* CSS Resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+select:focus-visible {
+  outline: none;
+  border: none;
+}
+
+
+/* GENERAL */
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  background: var(--black);
+  font-family: "Netflix Sans";
+  width: 100%;
+  min-width: 216px;
+}
+
+h1 {
+  color: #fff;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 81.73px;
+}
+
+h2 {
+  color: #fff;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 81.73px;
+}
+
+h3 {
+  font-size: 1.25vw;
+  font-weight: 500;
+  line-height: 33.2px;
+  color: var(--smokeWhite);
+}
+
+h4 {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 33.2px;
+}
