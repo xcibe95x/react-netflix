@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 import styles from "./ProfileCard.module.css";
 
 const ProfileCard: FC<IProfileCard> = ({ name, imgFilename }) => {
-  const context = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   function logUser() {
     if (name) {
-      context.setUser(name);
+      setUser(name);
       navigate("/home");
     }
   }
@@ -20,7 +20,7 @@ const ProfileCard: FC<IProfileCard> = ({ name, imgFilename }) => {
       <button onClick={logUser}>
         <img
           className={styles.profileImg}
-          src={require(`../../assets/images/${imgFilename || "addProfile.png"}`)}
+          src={require(`../../assets/profileCard/${imgFilename || "addProfile.png"}`)}
           alt="Profile image"
         />
       </button>

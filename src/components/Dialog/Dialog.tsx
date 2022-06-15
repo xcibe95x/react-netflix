@@ -9,8 +9,9 @@ const Dialog = () => {
           <img className={styles.dialogImg} src="./assets/img/posters/MoviePoster.png" alt="img" />
           <div className={styles.dialogOverlay}>
             <img className={styles.dialogLogo} src="./assets/img/posters/MovieName.png" alt="Movie logo" />
-            <div className="dialog__controls">
+            <div className={styles.dialogControls}>
               <button className={styles.dialogButton}>
+                <i className="fas fa-play "></i>
                 <img src="./assets/img/VectorPlay.png" alt="play icon" /> Play
               </button>
               <button className={`${styles.dialogButton} ${styles.buttonRoundDark}`}>
