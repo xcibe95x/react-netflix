@@ -10,6 +10,7 @@ import {
   Route,
 } from "react-router-dom";
 import Home from './main/Home';
+import Hero from './components/Hero/Hero';
 
 
 const root = ReactDOM.createRoot(
@@ -22,6 +23,7 @@ root.render(
       <Routes>
         <Route path="/" element={<UserSelect/>}/>
         <Route path="/home" element={<Home/>}/>
+        <Route path="/hero" element={<Hero />}/>
         <Route path="*" element={<h1>404 Nun se truvat</h1>}/>
       </Routes>
     </BrowserRouter>
