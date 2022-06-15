@@ -2,6 +2,13 @@
 
 @font-face {
   font-family: "Netflix Sans";
+  src: url("./assets/fonts/NetflixSansMedium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Netflix Sans";
   src: url("./assets/fonts/NetflixSansBold.ttf");
   font-weight: bold;
   font-style: normal;
