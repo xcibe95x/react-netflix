@@ -11,7 +11,6 @@ function Home() {
     <>
 
       <Hero />
-      <h1>Pagina Principale Godflex</h1>
       <h3>Logged user: {user}</h3>
       <Slider/>
       <Slider/>
