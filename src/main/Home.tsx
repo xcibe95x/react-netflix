@@ -1,3 +1,5 @@
+import { MediaPlayerCard } from "../components/MediaPlayerCard/MediaPlayerCard";
+import { Slider } from "../components/Slider/Slider";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../Interfaces";
 import Hero from "../components/Hero/Hero";
@@ -14,8 +16,12 @@ function Home() {
   return (
     <>
       <Hero />
-      <h1>Pagina Principale Godflex</h1>
       <h3>Logged user: {user}</h3>
+      <Slider />
+      <Slider />
+      <Slider />
+      <Slider />
+      <Slider />
     </>
   );
 }
