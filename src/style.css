@@ -2,14 +2,14 @@
 
 @font-face {
   font-family: "Netflix Sans";
-  src: url("../public/assets/fonts/NetflixSansBold.ttf");
+  src: url("./assets/fonts/NetflixSansBold.ttf");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Netflix Sans";
-  src: url("../public/assets/fonts/NetflixSansRegular.ttf");
+  src: url("./assets/fonts/NetflixSansRegular.ttf");
   font-weight: normal;
   font-style: normal;
 }
@@ -57,7 +57,6 @@ select:focus-visible {
   outline: none;
   border: none;
 }
-
 
 /* GENERAL */
 
