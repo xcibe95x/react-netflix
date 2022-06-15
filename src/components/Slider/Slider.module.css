@@ -1,0 +1,99 @@
+.godSlider {
+    margin: 3em 0;
+}
+
+.sliderTitle {
+    font-size: max(16px, 1.2vw);
+    padding: 0 10px 0 60px;
+  }
+
+.backgroundVideo {
+    position: absolute;
+    width: 100%;
+    object-fit: cover;
+    left: 0;
+    right: 0;
+    top: -120px;
+    bottom: 0;
+    height: 1021px;
+}
+
+.popular-container:hover .seeAllArrow,
+.godSlider:hover .seeAllArrow,
+.big-container:hover .seeAllArrow {
+  height: 15px;
+}
+
+.sliderTitle:hover ~ .seeAllArrow {
+    display: none;
+}
+
+.sliderTitle:hover ~ .seeAllText,
+.seeAllText::before {
+  content: "Sfoglia tutti";
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: transform 0.4s ease, background-position 0.4s, opacity 1.2s;
+  background-position: right;
+}
+
+.sliderTitle:hover ~ .seeAllArrow {
+  display: none;
+}
+
+.popular-container:hover .seeAllArrow,
+.godSlider:hover .seeAllArrow,
+.big-container:hover .seeAllArrow {
+  opacity: 1;
+  transform: translate(-10px, 3px);
+  transition: transform 0.4s ease, background-position 0.4s, opacity 1.2s;
+  background-position: right;
+  width: 20px;
+  height: 20px;
+}
+
+.seeAllText,
+.seeAllArrow {
+  padding-right: 1em;
+  display: inline-block;
+  opacity: 0;
+  color: #54b9c5;
+  font-weight: 500;
+  font-size: max(10px, 0.8vw);
+  background-image: url("../../../private/assets/img/navigation/arrow.svg");
+  background-repeat: no-repeat;
+  background-size: auto max(8px, 0.9vw);
+  background-position: 60px;
+  transform: translate(-20px, 0.5px);
+}
+
+.movieSection {
+    display: flex;
+    flex-direction: column;
+    margin-left: 60px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+
+  /* Hide ScrollBar */
+.posterContainer::-webkit-scrollbar,
+.big-poster-container::-webkit-scrollbar,
+.top-poster-container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome  */
+}
+
+
+.posterContainer,
+.big-poster-container,
+.top-poster-container {
+  display: flex;
+  gap: 5px;
+  position: relative;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  scroll-behavior: smooth;
+}

@@ -1,8 +1,14 @@
+import { MediaPlayerCard } from "../components/MediaPlayerCard/MediaPlayerCard";
+import { Slider } from "../components/Slider/Slider";
 
 function Home() {
   return (
     <>
-      <h1>Pagina Principale Godflex</h1>
+      <Slider/>
+      <Slider/>
+      <Slider/>
+      <Slider/>
+      <Slider/>
     </>
   );
 }
