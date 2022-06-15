@@ -2,6 +2,7 @@ import styles from './Slider.module.css';
 
 export const Slider = () => {
 
+    
   return (
     <>
     <div className={styles.godSlider}>
@@ -9,7 +10,9 @@ export const Slider = () => {
       <span className={styles.seeAllArrow}></span>
       <span className={styles.seeAllText}></span>
       <div className={styles.movieSection}>
-        <div className={styles.posterContainer}></div>
+        <div className={styles.posterContainer}>
+            
+        </div>
       </div>
     </div>
     </>

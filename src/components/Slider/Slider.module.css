@@ -5,7 +5,7 @@
 .sliderTitle {
     font-size: max(16px, 1.2vw);
     padding: 0 10px 0 60px;
-  }
+}
 
 .backgroundVideo {
     position: absolute;
@@ -18,9 +18,7 @@
     height: 1021px;
 }
 
-.popular-container:hover .seeAllArrow,
-.godSlider:hover .seeAllArrow,
-.big-container:hover .seeAllArrow {
+.godSlider:hover .seeAllArrow {
   height: 15px;
 }
 
@@ -41,9 +39,7 @@
   display: none;
 }
 
-.popular-container:hover .seeAllArrow,
-.godSlider:hover .seeAllArrow,
-.big-container:hover .seeAllArrow {
+.godSlider:hover .seeAllArrow {
   opacity: 1;
   transform: translate(-10px, 3px);
   transition: transform 0.4s ease, background-position 0.4s, opacity 1.2s;
@@ -76,18 +72,12 @@
     position: relative;
   }
 
-
-  /* Hide ScrollBar */
-.posterContainer::-webkit-scrollbar,
-.big-poster-container::-webkit-scrollbar,
-.top-poster-container::-webkit-scrollbar {
+/* Hide ScrollBar */
+.posterContainer::-webkit-scrollbar {
   display: none; /* Safari and Chrome  */
 }
 
-
-.posterContainer,
-.big-poster-container,
-.top-poster-container {
+.posterContainer {
   display: flex;
   gap: 5px;
   position: relative;
