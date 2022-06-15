@@ -1,0 +1,32 @@
+.profileCard {
+  width: clamp(84px, 10vw, 200px);
+  text-align: center;
+}
+
+.profileName {
+  font-size: max(12px, 1.3vw);
+  color: var(--gray);
+}
+
+.profileImg {
+  width: 100%;
+  border-radius: 4px;
+  text-align: center;
+  border: 2px solid transparent;
+}
+
+.profileCard:hover .profileImg {
+  border-color: var(--smokeWhite);
+}
+
+.profileCard:hover .profileName {
+  color: var(--smokeWhite);
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
