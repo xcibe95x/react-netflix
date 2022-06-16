@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Genre, Movie } from '../../Interfaces';
-import styles from './MediaPlayerCard.module.css';
+import styles from './MediaPlayerModal.module.css';
 
-export const MediaPlayerCard: FC<Movie> = (movie) => {
+export const MediaPlayerModal: FC<Movie> = (movie) => {
 
   // API CALL
 

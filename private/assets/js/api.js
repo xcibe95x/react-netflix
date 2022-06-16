@@ -22,7 +22,7 @@ for (i = 0; i < posterContainer.length; i++) {
 
 for (j = 0; j < 7; j++) {
   bigContainer.innerHTML += `<div class='card__placeholder' id='placeholder-big-${j}'></div>`;
-  top10Container.innerHTML += `<div class='card__placeholder' id='placeholder-top10-${j}'></div>`;
+  top10Container.innerHTML += `<div class=' card__placeholder placeholder--top10' id='placeholder-top10-${j}'></div>`;
 }
 
 // Populate Big Movie Posters
