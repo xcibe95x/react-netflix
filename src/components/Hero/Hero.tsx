@@ -36,7 +36,7 @@ const Hero = () => {
           </a>
           <a href="#" className={`${styles.btnRiproduci} ${styles.btnInfo}`}>
             <div className={styles.info}>
-              <i className="far fa-cicrcle-info"></i>
+              <i className="far fa-circle-info"></i>
             </div>
             More info
           </a>
