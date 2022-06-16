@@ -30,7 +30,7 @@ const Hero = () => {
             supernatural forces, and one strange little girl.
           </p>
         </div>
-        <div className={styles.movieposter__riproduci}>
+        <div className={styles.movieposterRiproduci}>
           <a href="#" className={styles.btnRiproduci}>
             <div className={styles.play}>
               <img src={vectorPlay} alt="Play" />
@@ -44,17 +44,7 @@ const Hero = () => {
             More info
           </a>
         </div>
-      </div>
-
-      {/* <!-- Popular Section -->
-        <div class="popular-container">
-          <h3 class="section-title">Popular on Godflex</h3>
-          <span class="see-all-notext"></span>
-          <span class="see-all"></span>
-          <div class="movie-section">
-            <div class="poster-container"></div>
-          </div>
-        </div>*/}
+      </div>    
     </div>
   );
 };
