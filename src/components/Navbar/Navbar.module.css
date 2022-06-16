@@ -1,10 +1,10 @@
-a {
+.navDesktop ul li a {
   text-decoration: none;
   color: white;
   transition: ease-out 0.5s;
 }
 
-a:hover {
+.navDesktop ul li a:hover {
   color: #808080;
 }
 
