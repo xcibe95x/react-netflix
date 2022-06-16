@@ -19,7 +19,7 @@ const Hero = () => {
       {/* <!-- Film Rating And Infos --> */}
       <span className={styles.rating}>VM14</span>
       <div className={styles.movieInfo}>
-        <img src={movieLogo} className={styles.movieposterLogo}></img>
+        <div className={styles.movieposterLogo}></div>
         <div className={styles.movieposterSupplementalMessage}>
           <img src={top10badge} alt="Top10Badge" />
           <p>Today n° 1 TV series</p>
@@ -30,7 +30,7 @@ const Hero = () => {
             supernatural forces, and one strange little girl.
           </p>
         </div>
-        <div className={styles.movieposterRiproduci}>
+        <div className={styles.movieposter__riproduci}>
           <a href="#" className={styles.btnRiproduci}>
             <div className={styles.play}>
               <img src={vectorPlay} alt="Play" />
