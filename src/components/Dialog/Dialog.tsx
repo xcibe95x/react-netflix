@@ -1,18 +1,39 @@
+import { FC, useEffect, useRef, useState } from "react";
 import styles from "./Dialog.module.css";
+import { Movie } from "../../Interfaces";
+import { fetchMovieLogo, POSTER_API } from "../../api";
 
-const Dialog = () => {
+const Dialog: FC<Movie> = (movie) => {
+  const similarMoviesRef = useRef<HTMLDivElement>(null);
+  const [logo, setLogo] = useState("");
+
+  useEffect(() => {
+    fetchMovieLogo(movie.id).then((path) => {
+      setLogo(path);
+    });
+  }, []);
+
+  /**
+   * Convert number of minutes to a formattet string of type "xxHyyM" that represents the movie runtime.
+   * @param {number} minutes number of minutes
+   * @return {string} formatted string
+   */
+  function formatRuntime(minutes: number): string {
+    return "" + Math.floor(minutes / 60) + "h " + (minutes % 60) + "min";
+  }
+
   return (
-    <div className="opacity-overlay">
-      <div className="dialog">
+    <div className={styles.opacityOverlay}>
+      <div className={styles.dialog}>
         {/* <!-- DIALOG IMAGE + OVERLAY  --> */}
         <div className={styles.dialogImgShadow}>
-          <img className={styles.dialogImg} src="./assets/img/posters/MoviePoster.png" alt="img" />
+          <img className={styles.dialogImg} src={POSTER_API + movie.backdrop_path} alt="img" />
           <div className={styles.dialogOverlay}>
-            <img className={styles.dialogLogo} src="./assets/img/posters/MovieName.png" alt="Movie logo" />
+            <img className={styles.dialogLogo} src={logo} alt="Movie logo" />
             <div className={styles.dialogControls}>
               <button className={styles.dialogButton}>
                 <i className="fas fa-play "></i>
-                <img src="./assets/img/VectorPlay.png" alt="play icon" /> Play
+                Play
               </button>
               <button className={`${styles.dialogButton} ${styles.buttonRoundDark}`}>
                 <i className="far fa-plus"></i>
@@ -31,24 +52,21 @@ const Dialog = () => {
         <div className={styles.dialogText}>
           <div className={styles.dialogTextLeft}>
             <span className={styles.compatibilityRate}>99% compatibile</span>
-            <span className="thin">2013</span>
-            <span className="maturity-number">VM14</span>
-            <span className="thin"> 5 seasons</span>
-            <span className="quality-tag">HD</span>
-            <p className="description">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam eum voluptates dolores ex dolorum accusamus
-              obcaecati provident sunt aliquid voluptate!
-            </p>
+            <span className={styles.thin}>2013</span>
+            <span className={styles.maturityNumber}>VM14</span>
+            <span className={styles.thin}> {formatRuntime(movie.runtime)}</span>
+            <span className={styles.qualityTag}>HD</span>
+            <p className={styles.description}>{movie.overview}</p>
           </div>
-          <div className="dialog__text-right">
-            <p className="right-section"></p>
-            <p className="right-section"></p>
+          <div className={styles.dialogTextRight}>
+            <p className={styles.rightSection}></p>
+            <p className={styles.rightSection}></p>
           </div>
         </div>
 
         {/* <!-- SIMILAR MOVIES SECTION --> */}
-        <h3 className="dialog__heading">Similar movies</h3>
-        <div className="dialog__similar-movies" id="similar-movies"></div>
+        <h3 className={styles.dialogHeading}>Similar movies</h3>
+        <div className={styles.dialogSimilarMovies} ref={similarMoviesRef}></div>
       </div>
     </div>
   );
