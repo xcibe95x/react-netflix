@@ -1,14 +1,11 @@
-import { FC, useRef } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import styles from "./Dialog.module.css";
-import { Movie } from "../../Interfaces";
-import { POSTER_API } from "../../api";
+import { CastMember, Movie } from "../../Interfaces";
+import { fetchCast, fetchSimilarMovies, POSTER_API } from "../../api";
 import { useMovieLogo } from "../../useMovieLogo";
+import DialogCard from "../DialogCard/DialogCard";
 
-const Dialog = (movie: Movie) => {
-  const similarMoviesRef = useRef<HTMLDivElement>(null);
-  const logo = useMovieLogo(movie.id);
-
-  /**
+ /**
    * Convert number of minutes to a formattet string of type "xxHyyM" that represents the movie runtime.
    * @param {number} minutes number of minutes
    * @return {string} formatted string
@@ -16,6 +13,20 @@ const Dialog = (movie: Movie) => {
   function formatRuntime(minutes: number): string {
     return "" + Math.floor(minutes / 60) + "h " + (minutes % 60) + "min";
   }
+
+const Dialog = (movie: Movie) => {
+  const similarMoviesRef = useRef<HTMLDivElement>(null);
+  const logo = useMovieLogo(movie.id);
+  const [movieArr, setMovieArr]=useState<Movie[]>([]);
+  const [castArr, setCastArr] = useState<CastMember[]>([]);
+
+  useEffect(() => {
+    fetchCast(movie.id).then((res)=> setCastArr(res.slice(0, 5)))
+    fetchSimilarMovies(movie.id).then((res)=>setMovieArr(res))
+  }, [])
+
+  
+
 
   return (
     <div className={styles.opacityOverlay}>
@@ -54,15 +65,20 @@ const Dialog = (movie: Movie) => {
             <p className={styles.description}>{movie.overview}</p>
           </div>
           <div className={styles.dialogTextRight}>
-            <p className={styles.rightSection}></p>
-            <p className={styles.rightSection}></p>
+            <p className={styles.rightSection}>
+            <span className={styles.grey}>Cast: </span>{castArr.map((castMember, index)=> <a href="">{castMember.name}{index == castArr.length-1 ? "" : ", "}</a>)}
+            </p>
+            <p className={styles.rightSection}>
+            <span className={styles.grey}>Genres: </span>{movie.genres.map((genere, index) => <a href="">{genere.name}{index == movie.genres.length - 1 ? "" : ", "}</a>)}
+            </p>
           </div>
         </div>
 
         {/* <!-- SIMILAR MOVIES SECTION --> */}
         <h3 className={styles.dialogHeading}>Similar movies</h3>
         <div className={styles.dialogSimilarMovies} ref={similarMoviesRef}>
-          {/*  */}
+          {movieArr.map((movie, index)=> <DialogCard {...movie} key= {index} />)};
+
         </div>
       </div>
     </div>

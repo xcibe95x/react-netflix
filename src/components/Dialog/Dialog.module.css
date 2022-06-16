@@ -177,6 +177,10 @@
   margin-top: 1em;
 }
 
+.rightSection a {
+  text-transform: capitalize;
+}
+
 .dialogHeading {
   padding: 4%;
   font-size: 30px;
