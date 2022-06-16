@@ -1,14 +1,14 @@
-a {
+.navDesktop a {
   text-decoration: none;
   color: white;
   transition: ease-out 0.5s;
 }
 
-a:hover {
+.navDesktop a:hover {
   color: #808080;
 }
 
-li {
+.Navdesktop li {
   list-style: none;
 }
 
