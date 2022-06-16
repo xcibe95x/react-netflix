@@ -1,0 +1,59 @@
+.card {
+  background-color: #2f2f2f;
+  flex-basis: 32.5%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.cardImgWrapper {
+  position: relative;
+}
+
+.cardImg {
+  width: 100%;
+}
+
+.cardLogo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+}
+
+.cardBody {
+  padding: 1em;
+}
+
+.cardControls {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.cardControls > button {
+  margin-left: auto;
+}
+
+.cardBody > p {
+  margin-top: 1em;
+  color: lightgray;
+  font-size: 13px;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.grey {
+  color: var(--gray);
+}
+
+@media only screen and (max-width: 480px) {
+  .card {
+    flex-basis: 45%;
+  }
+}

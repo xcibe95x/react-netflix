@@ -1,17 +1,12 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useRef } from "react";
 import styles from "./Dialog.module.css";
 import { Movie } from "../../Interfaces";
-import { fetchMovieLogo, POSTER_API } from "../../api";
+import { POSTER_API } from "../../api";
+import { useMovieLogo } from "../../useMovieLogo";
 
-const Dialog: FC<Movie> = (movie) => {
+const Dialog = (movie: Movie) => {
   const similarMoviesRef = useRef<HTMLDivElement>(null);
-  const [logo, setLogo] = useState("");
-
-  useEffect(() => {
-    fetchMovieLogo(movie.id).then((path) => {
-      setLogo(path);
-    });
-  }, []);
+  const logo = useMovieLogo(movie.id);
 
   /**
    * Convert number of minutes to a formattet string of type "xxHyyM" that represents the movie runtime.
@@ -66,7 +61,9 @@ const Dialog: FC<Movie> = (movie) => {
 
         {/* <!-- SIMILAR MOVIES SECTION --> */}
         <h3 className={styles.dialogHeading}>Similar movies</h3>
-        <div className={styles.dialogSimilarMovies} ref={similarMoviesRef}></div>
+        <div className={styles.dialogSimilarMovies} ref={similarMoviesRef}>
+          {/*  */}
+        </div>
       </div>
     </div>
   );
