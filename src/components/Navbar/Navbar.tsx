@@ -9,8 +9,6 @@ import Accounticon from "../../assetsNavbar/navigation/account-icon.svg";
 import Help from "../../assetsNavbar/navigation/assistance.svg";
 import { useRef, MouseEvent as RMouseEvent } from "react";
 import { useLocation } from "react-router-dom";
-import * as React from "react";
-
 export const Navbar = () => {
   const dropDown = useRef<HTMLUListElement>(null);
 
@@ -123,12 +121,7 @@ export const Navbar = () => {
         </li>
         <li className={styles.liContainer}>
           <a href="#" className={styles.downIcon}>
-            <img
-              src={Downicon}
-              alt="imgDropdown"
-              onClick={toggleDropdown}
-              className={styles.listHide}
-            />
+            <img src={Downicon} alt="imgDropdown" onClick={toggleDropdown} className={styles.listHide} />
           </a>
           {/* dropdown ul */}
           <ul className={styles.dropDown} ref={dropDown}>

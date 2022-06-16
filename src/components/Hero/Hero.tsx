@@ -1,9 +1,6 @@
 import styles from "./Hero.module.css";
-import top10badge from "../../assets/hero/Top10Badge.png";
-import vectorPlay from "../../assets/hero/VectorPlay.svg";
-import vectorInfo from "../../assets/hero/VectorInfo.png";
-import video from "../../assets/hero/strangerThings.mp4";
-import movieLogo from "../../assets/hero/MovieName.png";
+import top10badge from "../../assets/images/Top10Badge.png";
+import video from "../../assets/videos/strangerThings.mp4";
 
 const Hero = () => {
   return (
@@ -12,7 +9,7 @@ const Hero = () => {
 
       {/* <!-- Video Player --> */}
 
-      <video className={styles.backgroundVideo} autoPlay muted loop poster="../../assets/hero/MovieName.png">
+      <video className={styles.backgroundVideo} autoPlay muted loop poster="../../assets/MovieName.png">
         <source src={video} type="video/mp4" />
       </video>
 
@@ -33,13 +30,13 @@ const Hero = () => {
         <div className={styles.movieposterRiproduci}>
           <a href="#" className={styles.btnRiproduci}>
             <div className={styles.play}>
-              <img src={vectorPlay} alt="Play" />
+              <i className="fas fa-play"></i>
             </div>
             Play
           </a>
           <a href="#" className={`${styles.btnRiproduci} ${styles.btnInfo}`}>
             <div className={styles.info}>
-              <img src={vectorInfo} alt="More info" />
+              <i className="far fa-cicrcle-info"></i>
             </div>
             More info
           </a>

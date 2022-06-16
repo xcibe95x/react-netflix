@@ -18,11 +18,7 @@ li {
   align-items: center;
   padding: 24px 56px;
   /* background: #18181899; */
-  background-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.89) 10%,
-    rgba(0, 0, 0, 0)
-  );
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.89) 10%, rgba(0, 0, 0, 0));
   position: fixed;
   z-index: 10;
 }
