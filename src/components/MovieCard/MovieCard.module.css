@@ -23,3 +23,16 @@
     text-align: center;
     text-transform: uppercase;
   }
+
+  .topTen {
+    width: 16%;
+    height: 32%;
+    max-height: 36px;
+    max-width: 26px;
+    background-image: url("../../assets/images/Top10Card.png");
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top-right-radius: 4px;
+  }
