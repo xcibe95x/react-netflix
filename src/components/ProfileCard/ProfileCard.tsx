@@ -20,7 +20,7 @@ const ProfileCard: FC<IProfileCard> = ({ name, imgFilename }) => {
       <button onClick={logUser}>
         <img
           className={styles.profileImg}
-          src={require(`../../assets/profileCard/${imgFilename || "addProfile.png"}`)}
+          src={require(`../../assets/images/${imgFilename || "addProfile.png"}`)}
           alt="Profile image"
         />
       </button>

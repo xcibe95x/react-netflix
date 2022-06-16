@@ -2,7 +2,7 @@
   width: 100%;
   height: 56.25vw;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%),
-    url(../../assets/hero/MoviePoster.png);
+    url(../../assets/images/MoviePoster.png);
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -13,7 +13,6 @@
   content: "";
   display: block;
   position: absolute;
-  z-index: 0;
   top: 0;
   left: 0;
   width: 100%;
@@ -38,6 +37,7 @@
   background: #4242424b;
   top: 60%;
   right: 0;
+  color: var(--white);
 }
 
 .movieInfo {
@@ -56,7 +56,7 @@
 .movieposterLogo {
   min-width: 353px;
   height: 115px;
-  background-image: url(../../assets/hero/MovieName.png);
+  background-image: url(../../assets/images/MovieName.png);
   background-position: bottom center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -71,7 +71,6 @@
   gap: 15px;
   word-wrap: normal;
   white-space: nowrap;
-
   font-size: max(24px, 1.6vw);
   color: var(--white);
   font-weight: 500;
@@ -84,12 +83,14 @@
   color: var(--white);
 }
 
-.movieposter__riproduci {
+.movieposterRiproduci {
   display: flex;
+  position: relative;
   justify-content: center;
   gap: 20px;
   max-width: 433px;
   height: 62px;
+  z-index: 1;
 }
 
 .play,
@@ -126,63 +127,170 @@
 .btnInfo:hover {
   background: rgba(255, 255, 255, 0.25);
 }
-/* .popular-container {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      from(rgba(20, 20, 20, 0)),
-      color-stop(15%, rgba(20, 20, 20, 0.15)),
-      color-stop(29%, rgba(20, 20, 20, 0.35)),
-      color-stop(44%, rgba(20, 20, 20, 0.58)),
-      color-stop(68%, #141414),
-      to(#141414)
-    );
-    background-image: -webkit-linear-gradient(
-      top,
-      rgba(20, 20, 20, 0) 0,
-      rgba(20, 20, 20, 0.15) 15%,
-      rgba(20, 20, 20, 0.35) 29%,
-      rgba(20, 20, 20, 0.58) 44%,
-      #141414 68%,
-      #141414 100%
-    );
-    background-image: -moz-
-      oldlinear-gradient(
-        top,
-        rgba(20, 20, 20, 0) 0,
-        rgba(20, 20, 20, 0.15) 15%,
-        rgba(20, 20, 20, 0.35) 29%,
-        rgba(20, 20, 20, 0.58) 44%,
-        #141414 68%,
-        #141414 100%
-      );
-    background-image: -o-linear-gradient(
-      top,
-      rgba(20, 20, 20, 0) 0,
-      rgba(20, 20, 20, 0.15) 15%,
-      rgba(20, 20, 20, 0.35) 29%,
-      rgba(20, 20, 20, 0.58) 44%,
-      #141414 68%,
-      #141414 100%
-    );
-    background-image: linear-gradient(
-      to bottom,
-      rgba(20, 20, 20, 0) 0,
-      rgba(20, 20, 20, 0.15) 15%,
-      rgba(20, 20, 20, 0.35) 29%,
-      rgba(20, 20, 20, 0.58) 44%,
-      #141414 68%,
-      #141414 100%
-    );
-    -webkit-background-size: 100% 100%;
-    -moz-background-size: 100% 100%;
-    background-size: 100% 100%;
-    background-position: 0 top;
-    background-repeat: repeat-x;
-    background-color: transparent;
+
+/* Responsive */
+
+@media screen and (max-width:884px) {
+
+  .movieposterDescription {
+    max-width: 480px;
   }
-   */
+
+  .backgroundVideo {
+    display: none;
+  }
+
+  .moviePoster {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .movieInfo{
+    top:60px;    
+  }  
+}
+
+@media screen and (max-width:590px) {
+
+  .movieposterDescription {
+    max-width: 360px;
+  }
+  
+  .movieposterLogo{
+    min-width: 300px;
+  }
+
+  .movieposterRiproduci {
+    max-width: 250px;
+    height: 27px;
+    gap: 5px;
+    justify-content: flex-start;
+  }
+
+  .btnRiproduci {
+    width: 60%;
+    height: 32px;
+    font-size: 14px;
+    padding: 10px 25px;
+    line-height: 12px; 
+    justify-content: center;
+  }
+
+  .movieposterSupplementalMessage {
+    min-width: 200px;
+    height: 30px;
+    gap: 5px;
+    font-size: 12px;
+    line-height: 30px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+  
+  .play {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    padding: 0;
+  }
+
+  .play img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .info {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    padding: 0;
+  }
+
+  .info img {
+    width: 20px;
+    height: 20px;
+  }  
+}
+
+@media screen and (max-width: 480px) {
+  .moviePoster {
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    margin-bottom: 7em;
+  }
+
+  .movieposterLogo {
+    min-width: 150px;
+    height: 50px;
+    background-size: 150px 50px;
+  }
+
+  .movieposterSupplementalMessage {
+    min-width: 200px;
+    height: 30px;
+    gap: 5px;
+    font-size: 12px;
+    line-height: 30px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+
+  .moviePoster::after{
+    box-shadow: inset 0 -80px 50px -50px var(--black);
+  }
+
+  .movieInfo{
+    top:40px;
+    left:20px;
+  }
+
+  .movieposterSupplementalMessage img {
+    height: 20px;
+  }
+
+  .movieposterDescription {
+    display: none;
+  }
+
+  .movieposterRiproduci {
+    max-width: 250px;
+    height: 32px;
+    gap: 5px;
+    justify-content: flex-start;
+  }
+
+  .btnRiproduci {
+    width: 45%;
+    height: 32px;
+    font-size: 14px;
+    padding: 5px 20px;
+    line-height: 12px;
+    justify-content: center;
+  }
+
+  .play {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    padding: 0;
+  }
+
+  .play img {
+    width: 15px;
+    height: 15px;
+  }
+
+  .info {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    padding: 0;
+  }
+
+  .info img {
+    width: 20px;
+    height: 20px;
+  }  
+}

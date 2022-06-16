@@ -20,6 +20,11 @@ export interface IUserContext {
 export const UserContext = createContext<IUserContext>({ setUser: () => {} });
 // ##########################
 
+export interface Genre {
+  id: number;
+  name: string;
+}
+
 export interface Movie {
   backdrop_path: string;
   genres: Genre[];
@@ -35,7 +40,17 @@ export interface Movie {
   vote_average: number;
   vote_count?: number;
 }
-export interface Genre {
+
+export interface Logo {
+  file_path: string;
+  height: number;
+  width: number;
+  aspect_ratio: number;
+}
+
+export interface CastMember {
+  gender: number;
   id: number;
   name: string;
+  original_name: string;
 }
