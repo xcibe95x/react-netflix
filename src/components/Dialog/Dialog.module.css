@@ -177,6 +177,43 @@
   margin-top: 1em;
 }
 
-.grey {
-  color: var(--gray);
+.dialogHeading {
+  padding: 4%;
+  font-size: 30px;
+}
+
+.dialogSimilarMovies {
+  padding: 4%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+@media only screen and (max-width: 480px) {
+  .dialog {
+    font-size: 12px;
+  }
+
+  .dialogTextLeft {
+    flex-basis: 250%;
+  }
+
+  .dialogTextRight {
+    font-size: 12px;
+  }
+
+  .thin,
+  .qualityTag {
+    display: inline-block;
+    margin-top: 1em;
+  }
+
+  .description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+  }
 }
