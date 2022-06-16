@@ -14,7 +14,6 @@ function GET() {
 }
 GET();
 
-
 // Replace User Profile on Page Load
 window.onload = function() {
 
