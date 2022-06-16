@@ -2,6 +2,7 @@ import styles from "./DialogCard.module.css";
 import dialogStyles from "../Dialog/Dialog.module.css";
 import { Movie } from "../../Interfaces";
 import { useMovieLogo } from "../../useMovieLogo";
+import { POSTER_API } from "../../api";
 
 const DialogCard = (movie: Movie) => {
   const logo = useMovieLogo(movie.id);
@@ -9,8 +10,8 @@ const DialogCard = (movie: Movie) => {
   return (
     <div className={styles.card}>
       <div className={styles.cardImgWrapper}>
-        <img className={styles.cardImg} src="${posterAPI}${film.backdrop_path}" alt="backdrop img" />
-        <img className={styles.cardLogo} src="${logo}" alt="" />
+        <img className={styles.cardImg} src={POSTER_API+movie.backdrop_path} alt="backdrop img" />
+        <img className={styles.cardLogo} src={logo} alt="" />
       </div>
       <div className={styles.cardBody}>
         <div className={styles.cardControls}>
