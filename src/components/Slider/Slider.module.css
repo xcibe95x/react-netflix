@@ -1,21 +1,21 @@
 .godSlider {
-    margin: 3em 0;
+  margin: 3em 0;
 }
 
 .sliderTitle {
-    font-size: max(16px, 1.2vw);
-    padding: 0 10px 0 60px;
+  font-size: max(16px, 1.2vw);
+  padding: 0 10px 0 60px;
 }
 
 .backgroundVideo {
-    position: absolute;
-    width: 100%;
-    object-fit: cover;
-    left: 0;
-    right: 0;
-    top: -120px;
-    bottom: 0;
-    height: 1021px;
+  position: absolute;
+  width: 100%;
+  object-fit: cover;
+  left: 0;
+  right: 0;
+  top: -120px;
+  bottom: 0;
+  height: 1021px;
 }
 
 .godSlider:hover .seeAllArrow {
@@ -23,7 +23,7 @@
 }
 
 .sliderTitle:hover ~ .seeAllArrow {
-    display: none;
+  display: none;
 }
 
 .sliderTitle:hover ~ .seeAllText,
@@ -56,7 +56,7 @@
   color: #54b9c5;
   font-weight: 500;
   font-size: max(10px, 0.8vw);
-  background-image: url("../../../private/assets/img/navigation/arrow.svg");
+  /* background-image: url("../../../private/assets/img/navigation/arrow.svg"); */
   background-repeat: no-repeat;
   background-size: auto max(8px, 0.9vw);
   background-position: 60px;
@@ -64,13 +64,13 @@
 }
 
 .movieSection {
-    display: flex;
-    flex-direction: column;
-    margin-left: 60px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    position: relative;
-  }
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
 
 /* Hide ScrollBar */
 .posterContainer::-webkit-scrollbar {
@@ -87,3 +87,5 @@
   scrollbar-width: none; /* Firefox */
   scroll-behavior: smooth;
 }
+
+

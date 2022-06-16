@@ -24,6 +24,7 @@ li {
     rgba(0, 0, 0, 0)
   );
   position: fixed;
+  z-index: 10;
 }
 
 .logoImg {
@@ -89,4 +90,59 @@ li {
 }
 .liDropdown:last-child {
   margin-top: 16px;
+}
+
+.HideButton {
+  display: none;
+}
+
+.Hide {
+  display: none;
+}
+
+@media screen and (max-width: 1060px) {
+  .list {
+    gap: 10px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .list {
+    gap: 10px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 865px) {
+  .listHide {
+    display: none;
+  }
+
+  .HideButton {
+    display: flex;
+    gap: 0.5em;
+  }
+
+  .Hide {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 15em;
+    top: 5em;
+    gap: 1em;
+    background: #18181899;
+    width: 150px;
+    padding: 16px;
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.151);
+    transition: ease-in 0.2s;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .list {
+    display: none;
+  }
 }
