@@ -13,7 +13,7 @@ const Hero = () => {
       {/* <!-- Video Player --> */}
 
       <video className={styles.backgroundVideo} autoPlay muted loop poster="../../assets/hero/MovieName.png">
-        <source src={video} type="video/mp4" />
+        <source src="https://xcibe95x.github.io/js-netflix/assets/hero/strangerThings.mp4" type="video/mp4" />
       </video>
 
       {/* <!-- Film Rating And Infos --> */}
