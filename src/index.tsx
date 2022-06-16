@@ -2,12 +2,14 @@ import React, { FC, useState } from "react";
 import ReactDOM from "react-dom/client";
 import UserSelect from "./main/UserSelect";
 import "./style.css";
-import { Navbar } from "./components/Navbar";
+import { Navbar } from "./components/Navbar/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./main/Home";
 import { UserContext } from "./Interfaces";
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 
 const App: FC = () => {
   // currently logged user
