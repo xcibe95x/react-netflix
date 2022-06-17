@@ -150,6 +150,14 @@ a {
   }
 }
 
+footer {
+  width: 60%;
+  margin: 0 auto;
+  color: var(--dark);
+  font-size: max(16px, 1.2vw);
+  margin-bottom: 50px;
+}
+
 @media only screen and (max-width: 780px) {
   .ratio_16x9vpr {
     height: calc((100vw / 4.5) * (9 / 16));
