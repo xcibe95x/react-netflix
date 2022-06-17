@@ -6,7 +6,7 @@ import Hero from "../components/Hero/Hero";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-  const { user, setUser } = useContext(UserContext);
+  const { loggedUser, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function Home() {
   return (
     <>
       <Hero />
-      <h3>Logged user: {user}</h3>
+      <h3>Logged user: {loggedUser.name}</h3>
       <Slider />
       <Slider />
       <Slider />
