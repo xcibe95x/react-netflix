@@ -8,7 +8,7 @@ import Pen from "../../assetsNavbar/navigation/pen-icon.svg";
 import Accounticon from "../../assetsNavbar/navigation/account-icon.svg";
 import Help from "../../assetsNavbar/navigation/assistance.svg";
 import { useRef, MouseEvent as RMouseEvent, useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Interfaces";
 import {v4 as uuid} from 'uuid';
 
@@ -17,7 +17,9 @@ export const Navbar = () => {
   const dropDownMobile = useRef<HTMLUListElement>(null);
   const { loggedUser, setUser, users } = useContext(UserContext);
   const otherUsers = users.filter((el) => loggedUser != el);
+  const navigate = useNavigate();
   // let location = useLocation();
+  
 
   function closure(dropDownElement: HTMLUListElement) {
     return function closeDropDown(innerEvent: Event) {
@@ -36,6 +38,10 @@ export const Navbar = () => {
     event.stopPropagation();
     document.body.addEventListener("click", closure(dropDownElement));
   };
+
+  function logOut () {
+    navigate("/");
+  }
 
   return (
     <div className={styles.navDesktop}>
@@ -134,7 +140,7 @@ export const Navbar = () => {
                 </li>
                 <hr />
                 <p className={styles.liDropdown}>
-                  <a href="#">Exit Godflex</a>
+                  <a onClick={logOut} href="#">Exit Godflex</a>
                 </p>
               </ul>
             </li>
