@@ -79,7 +79,7 @@ body {
   background: var(--black);
   font-family: "Netflix Sans";
   width: 100%;
-  min-width: 216px;
+  min-width: 360px;
 }
 
 h1 {

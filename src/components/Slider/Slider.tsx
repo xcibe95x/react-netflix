@@ -36,10 +36,10 @@ export const Slider: React.FC<{attribute: SliderSection, setMovie: React.Dispatc
           <i className="fas fa-chevron-right"></i>
         </span>
         <div className={styles.movieSection}>
-          <button className={`${styles.buttonDx} ${styles.sliderButton}`} onClick={() => scroll(150)}>
+          <button className={`${styles.buttonDx} ${styles.sliderButton}`} onClick={() => scroll(300)}>
             <i className="far fa-chevron-right fa-2xl"></i>
           </button>
-          <button className={`${styles.buttonSx} ${styles.sliderButton}`} onClick={() => scroll(-150)}>
+          <button className={`${styles.buttonSx} ${styles.sliderButton}`} onClick={() => scroll(-300)}>
             <i className="far fa-chevron-left fa-2xl"></i>
           </button>
           <div className={styles.posterContainer} ref={ref}>
