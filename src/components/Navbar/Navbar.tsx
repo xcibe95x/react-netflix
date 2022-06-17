@@ -39,7 +39,7 @@ export const Navbar = () => {
     document.body.addEventListener("click", closure(dropDownElement));
   };
 
-  function logOut () {
+  const logOut = () => {
     navigate("/");
   }
 
