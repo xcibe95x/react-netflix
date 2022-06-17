@@ -36,3 +36,16 @@
     right: 0;
     border-top-right-radius: 4px;
   }
+
+  @media screen and (max-width:780px) {
+    .movieCard > img{
+      width: calc(100vw / 4.5);
+    }
+  }
+
+  @media screen and (max-width:480px) {
+    .movieCard > img{
+      width: calc(100vw / 2.5);
+    }
+  }
+
