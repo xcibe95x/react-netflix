@@ -14,6 +14,13 @@ export const Slider: React.FC<SliderSection> = (attribute) => {
     .then(res => setMovies(res));
   }, [])
 
+  const topFix = (index:number, movie:Movie) => {
+    if(index < 10) {
+      return (<TopTenCard movie={movie}  key={index} index={index+1} />) 
+    }     
+  } 
+
+
   return (
     <>
       <div className={styles.godSlider}>
@@ -29,7 +36,7 @@ export const Slider: React.FC<SliderSection> = (attribute) => {
         <div className={styles.movieSection}>
           <div className={styles.posterContainer}>
         
-            {movies.map((movie, i) => attribute.pageIndex != 6 ? <MovieCard movie={movie} showLogo={(attribute.pageIndex != 5)} key={i}/> : <TopTenCard/>)}
+            {movies.map((movie, i) => attribute.pageIndex != 6 ? <MovieCard movie={movie} showLogo={(attribute.pageIndex != 5)} key={i}/> : topFix(i,movie))}
 
           </div>
         </div>
