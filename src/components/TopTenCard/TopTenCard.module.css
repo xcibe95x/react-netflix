@@ -1,0 +1,25 @@
+.topTenCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topTenNumber {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    text-shadow: -3px -3px gray, 3px -3px gray, -3px 3px gray, 3px 3px gray, 0 -3px grey, 0 3px grey, 3px 0 grey,
+      -3px 0 grey;
+    font-size: 210px;
+    line-height: 180px;
+    position: relative;
+    left: 12%;
+    top: 0;
+    color: black;
+  }
+
+.topTenCard > img {
+    z-index: 2;
+    max-height: 200px;
+    max-width: 135px;
+}
+  

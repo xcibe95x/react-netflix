@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchMovies } from "../../api";
 import { Movie, SliderSection } from "../../Interfaces";
 import { MovieCard } from "../MovieCard/MovieCard";
+import { TopTenCard } from "../TopTenCard/TopTenCard";
 import styles from "./Slider.module.css";
 
 export const Slider: React.FC<SliderSection> = (attribute) => {
@@ -28,7 +29,7 @@ export const Slider: React.FC<SliderSection> = (attribute) => {
         <div className={styles.movieSection}>
           <div className={styles.posterContainer}>
         
-        {movies.map((movie, i) => <MovieCard movie={movie} showLogo={attribute.pageIndex != 5} key={i}/>)}
+            {movies.map((movie, i) => attribute.pageIndex != 6 ? <MovieCard movie={movie} showLogo={(attribute.pageIndex != 5)} key={i}/> : <TopTenCard/>)}
 
           </div>
         </div>
