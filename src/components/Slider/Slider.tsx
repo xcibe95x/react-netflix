@@ -36,26 +36,16 @@ export const Slider: React.FC<SliderSection> = (attribute) => {
           <i className="fas fa-chevron-right"></i>
         </span>
         <div className={styles.movieSection}>
-          <button
-            className={`${styles.buttonDx} ${styles.sliderButton}`}
-            onClick={() => scroll(150)}
-          >
+          <button className={`${styles.buttonDx} ${styles.sliderButton}`} onClick={() => scroll(150)}>
             <i className="far fa-chevron-right fa-2xl"></i>
           </button>
-          <button
-            className={`${styles.buttonSx} ${styles.sliderButton}`}
-            onClick={() => scroll(-150)}
-          >
+          <button className={`${styles.buttonSx} ${styles.sliderButton}`} onClick={() => scroll(-150)}>
             <i className="far fa-chevron-left fa-2xl"></i>
           </button>
           <div className={styles.posterContainer} ref={ref}>
             {movies.map((movie, i) =>
               attribute.pageIndex != 6 ? (
-                <MovieCard
-                  movie={movie}
-                  showLogo={attribute.pageIndex != 5}
-                  key={i}
-                />
+                <MovieCard movie={movie} showLogo={attribute.pageIndex != 5} key={i} />
               ) : (
                 topFix(i, movie)
               )

@@ -1,8 +1,9 @@
 import styles from "./DialogCard.module.css";
 import dialogStyles from "../Dialog/Dialog.module.css";
-import { Movie } from "../../Interfaces";
+import { Movie, Ratio } from "../../Interfaces";
 import { useMovieLogo } from "../../useMovieLogo";
 import { POSTER_API } from "../../api";
+import LazyLoadImg from "../LazyLoadImg/LazyLoadImg";
 
 const DialogCard = (movie: Movie) => {
   const logo = useMovieLogo(movie.id);
@@ -10,8 +11,15 @@ const DialogCard = (movie: Movie) => {
   return (
     <div className={styles.card}>
       <div className={styles.cardImgWrapper}>
-        <img className={styles.cardImg} src={POSTER_API+movie.backdrop_path} alt="backdrop img" />
-        <img className={styles.cardLogo} src={logo} alt="" />
+        <LazyLoadImg
+          style={styles.cardImg}
+          src={POSTER_API + movie.backdrop_path}
+          alt={movie.title}
+          ratio={Ratio.ratio_16x9}
+          viewportRelative={false}
+        />
+
+        <img className={styles.cardLogo} src={logo} alt={movie.title} />
       </div>
       <div className={styles.cardBody}>
         <div className={styles.cardControls}>

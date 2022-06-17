@@ -15,7 +15,7 @@ function UserSelect() {
         {users?.map((user, i) => (
           <ProfileCard key={i} {...user} />
         ))}
-        {/* <ProfileCard /> */}
+        <ProfileCard />
       </div>
       <button className={styles.button}>Gestisci i profili</button>
     </div>

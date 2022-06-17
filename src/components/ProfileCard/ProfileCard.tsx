@@ -1,8 +1,9 @@
 import { FC, useContext } from "react";
-import { UserContext, User } from "../../Interfaces";
+import { UserContext, User, Ratio } from "../../Interfaces";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./ProfileCard.module.css";
+import LazyLoadImg from "../LazyLoadImg/LazyLoadImg";
 
 const ProfileCard = (user: User) => {
   const { loggedUser, setUser } = useContext(UserContext);
@@ -18,17 +19,24 @@ const ProfileCard = (user: User) => {
   return (
     <div className={styles.profileCard}>
       <button onClick={logUser}>
-        <img
-          className={styles.profileImg}
-          src={require(`../../assets/images/${
-            user.profilePic || "addProfile.png"
-          }`)}
-          alt="Profile image"
+        <LazyLoadImg
+          alt={"Profile image"}
+          src={require(`../../assets/images/${user.profilePic || "addProfile.png"}`)}
+          style={styles.profileImg}
+          ratio={Ratio.ratio_1x1}
+          viewportRelative={false}
         />
       </button>
       <h4 className={styles.profileName}>{user.name || "Add God"}</h4>
     </div>
   );
 };
+
+const defaultProp: User = {
+  name: "",
+  profilePic: "",
+};
+
+ProfileCard.defaultProps = defaultProp;
 
 export default ProfileCard;
