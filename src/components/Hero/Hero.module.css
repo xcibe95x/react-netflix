@@ -151,14 +151,27 @@
   }  
 }
 
-@media screen and (max-width:590px) {
+@media screen and (max-width:780px) {
+
+  .movieInfo{
+    top:50px;
+    left:30px;
+    gap:5px;    
+  }  
 
   .movieposterDescription {
     max-width: 360px;
+    font-size: 10px;
+    margin:0;
+  }
+
+  .movieposterSupplementalMessage > img{
+    width:20px;
   }
   
   .movieposterLogo{
-    min-width: 300px;
+    min-width: 250px;
+    height: 80px;
   }
 
   .movieposterRiproduci {
