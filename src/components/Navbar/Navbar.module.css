@@ -76,7 +76,7 @@
 .dropDownList {
   display: flex;
   gap: 1em;
-  font-size: clamp(12px, 1.3vw, 20px);
+  font-size: clamp(12px, .9vw, 20px);
 }
 
 .dropDown img {
