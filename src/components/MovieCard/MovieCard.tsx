@@ -3,13 +3,18 @@ import { Movie, Ratio } from "../../Interfaces";
 import { POSTER_API } from "../../api";
 import { useMovieLogo } from "../../useMovieLogo";
 import LazyLoadImg from "../LazyLoadImg/LazyLoadImg";
+import { MouseEvent } from "react";
 
-export const MovieCard: React.FC<{ movie: Movie; showLogo: boolean }> = ({ movie, showLogo }) => {
+export const MovieCard: React.FC<{ movie: Movie, showLogo: boolean, setMovie: React.Dispatch<React.SetStateAction<Movie | null>> }> = ({ movie, showLogo, setMovie }) => {
   const logoPath = useMovieLogo(movie.id);
+
+  const handleMouseEnter = (e: MouseEvent) => {
+    console.log(e.target);
+  }
 
   if (movie.backdrop_path)
     return (
-      <div className={styles.movieCard}>
+      <div onMouseEnter={handleMouseEnter} className={styles.movieCard}>
         {movie.vote_average > 7.8 && <span className={styles.topTen}></span>}
         {showLogo && <img src={logoPath} className={styles.movieLogo}></img>}
         <LazyLoadImg

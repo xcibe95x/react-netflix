@@ -1,6 +1,6 @@
 import { MediaPlayerModal } from "../components/MediaPlayerModal/MediaPlayerModal";
 import { Slider } from "../components/Slider/Slider";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Movie, UserContext } from "../Interfaces";
 import Hero from "../components/Hero/Hero";
 import { useNavigate } from "react-router-dom";
@@ -26,6 +26,9 @@ const mockMovie: Movie = {
 function Home() {
   const { loggedUser, setUser } = useContext(UserContext);
   const navigate = useNavigate();
+  const [showPlayer, setShowPlayer] = useState(false);
+  const [movie, setMovie] = useState<Movie | null>(null);
+
   const titles = [
     "Most popular on Godflex",
     `${loggedUser.name}${", " + "Keep Watching"}`,
@@ -42,11 +45,11 @@ function Home() {
 
   return (
     <>
-      <MediaPlayerModal {...mockMovie} />
+      <MediaPlayerModal movie={movie} />
       <Hero />
       <div className={styles.wrapper}>
         {titles.map((title, i) => (
-          <Slider sectionTitle={title} pageIndex={i + 1} key={i} />
+          <Slider attribute={{sectionTitle: title, pageIndex: i + 1}} setMovie={setMovie} key={i} />
         ))}
       </div>
       <Footer />
