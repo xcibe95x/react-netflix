@@ -70,32 +70,64 @@
   scroll-behavior: smooth;
 }
 
-@media screen and (max-width:780px) {
-  .posterContainer{
+/* SliderButton */
+
+.sliderButton {
+  position: absolute;
+  cursor: pointer;
+  color: white;
+  width: 100px;
+  /* height 100% overflows smh */
+  height: 98%;
+  z-index: 7;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+
+.sliderButton i {
+  pointer-events: none;
+}
+
+.buttonDx {
+  right: 0;
+  background: linear-gradient(to left, #000, transparent);
+  justify-content: end;
+  padding-right: 1.5em;
+}
+
+.buttonSx {
+  left: 0;
+  background: linear-gradient(to right, #000, transparent);
+  justify-content: start;
+  padding-left: 1.5em;
+}
+
+@media screen and (max-width: 780px) {
+  .posterContainer {
     margin-left: -2em;
   }
 
-  .sliderTitle{
+  .sliderTitle {
     padding: 10px 0 0 20px;
   }
 
-  .godSlider{
+  .godSlider {
     margin: 1em 0;
   }
-
 }
 
-@media screen and (max-width:480px) {
-
-  .posterContainer{
+@media screen and (max-width: 480px) {
+  .posterContainer {
     margin-left: -2em;
   }
-  .godSlider{
+  .godSlider {
     margin: 1em 0;
   }
   .sliderTitle {
     padding: 10px 0 0 20px;
     font-size: 14px;
     line-height: 14px;
-  }  
+  }
 }
