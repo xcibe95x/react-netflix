@@ -113,3 +113,11 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+footer {
+  width: 60%;
+  margin: 0 auto;
+  color: var(--dark);
+  font-size: max(16px, 1.2vw);
+  margin-bottom: 50px;
+}

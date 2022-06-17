@@ -18,7 +18,6 @@
   }
 
 .topTenCard > img {
-    z-index: 2;
     max-height: 200px;
     max-width: 135px;
 }
