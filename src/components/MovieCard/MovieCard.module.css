@@ -1,0 +1,51 @@
+.movieCard {
+  position: relative;
+  cursor: pointer;
+}
+
+.movieCard > img {
+    width: calc(100vw / 6.5);
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+/* Posters Logo */
+.movieLogo {
+    position: absolute;
+    width: 50% !important;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    margin: auto;
+    color: rgba(255, 255, 255, 0.829);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .topTen {
+    width: 16%;
+    height: 32%;
+    max-height: 36px;
+    max-width: 26px;
+    background-image: url("../../assets/images/Top10Card.png");
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top-right-radius: 4px;
+  }
+
+  @media screen and (max-width:780px) {
+    .movieCard > img{
+      width: calc(100vw / 4.5);
+    }
+  }
+
+  @media screen and (max-width:480px) {
+    .movieCard > img{
+      width: calc(100vw / 2.5);
+    }
+  }
+

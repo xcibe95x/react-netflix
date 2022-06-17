@@ -1,0 +1,16 @@
+.wrapper {
+    position: relative;
+    margin-top: -15vw;
+}
+
+@media screen and (max-width: 780px) {
+    .wrapper{
+        margin-top: -27vw;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .wrapper{
+        margin-top: -35vw;
+    }
+}

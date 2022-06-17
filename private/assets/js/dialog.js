@@ -1,16 +1,10 @@
 const MOVIE_ID = 338953;
 
-const btnHover = document.querySelector(".card-more");
+const btnHover = document.querySelector(".player-control:last-child");
 const dialogContainer = document.querySelector(".opacity-overlay");
 const crossBtn = document.querySelector(".dialog__cross");
 
-btnHover.addEventListener("click", (outerEvent) => {
-  outerEvent.stopPropagation();
-  dialogContainer.parentElement.style.overflow = "hidden";
-  dialogContainer.style.display = "block";
-
-  document.body.addEventListener("click", closeDialogOnClickOut);
-});
+btnHover.addEventListener("click", openDialog);
 
 // close dialog manually
 crossBtn.addEventListener("click", (e) => {
@@ -72,6 +66,7 @@ function closeDialogOnClickOut(e) {
  * @param {object} film object containing film data
  */
 function appendSimilarFilm(container, film) {
+  if (film.backdrop_path == null) return;
   fetchMovieLogo(film.id).then((logo) => {
     container.innerHTML += `
       <div class="card">
@@ -94,4 +89,15 @@ function appendSimilarFilm(container, film) {
       </div>
   `;
   });
+}
+
+/**
+ * Opens dialog with opacity background.
+ * @param {Event} e Click event that has triggered dialog open
+ */
+function openDialog(e) {
+  e.stopPropagation();
+  dialogContainer.parentElement.style.overflow = "hidden";
+  dialogContainer.style.display = "block";
+  document.body.addEventListener("click", closeDialogOnClickOut);
 }

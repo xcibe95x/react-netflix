@@ -9,8 +9,8 @@ const Hero = () => {
 
       {/* <!-- Video Player --> */}
 
-      <video className={styles.backgroundVideo} autoPlay muted loop poster="../../assets/MovieName.png">
-        <source src={video} type="video/mp4" />
+      <video className={styles.backgroundVideo} autoPlay muted loop poster="../../assets/hero/MovieName.png">
+        <source src="https://xcibe95x.github.io/js-netflix/assets/hero/strangerThings.mp4" type="video/mp4" />
       </video>
 
       {/* <!-- Film Rating And Infos --> */}
@@ -36,7 +36,7 @@ const Hero = () => {
           </a>
           <a href="#" className={`${styles.btnRiproduci} ${styles.btnInfo}`}>
             <div className={styles.info}>
-              <i className="far fa-cicrcle-info"></i>
+              <i className="far fa-circle-info"></i>
             </div>
             More info
           </a>

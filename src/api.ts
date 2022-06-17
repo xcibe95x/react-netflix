@@ -37,7 +37,8 @@ export async function fetchSimilarMovies(movieId: number): Promise<Movie[]> {
   let response = await fetch(
     BASE_URL + "/3/movie/" + movieId + "/similar" + "?api_key=" + process.env.REACT_APP_API_KEY
   );
-  return response.json();
+  let json = await response.json();
+  return json.results;
 }
 
 /**
@@ -47,7 +48,17 @@ export async function fetchSimilarMovies(movieId: number): Promise<Movie[]> {
  */
 export async function fetchCast(movieId: number): Promise<CastMember[]> {
   let response = await fetch(
-    BASE_URL + "/3/movie/" + movieId + "/credits" + "?api_key=" + process.env.REACT_APP_API_KEY
+    BASE_URL + "/3/movie/" + movieId + "/credits?api_key=" + process.env.REACT_APP_API_KEY
   );
-  return response.json();
+  let json = await response.json();
+  return json.cast;
+}
+
+
+export async function fetchMovies(pageIndex: number): Promise<Movie[]> {
+  let response = await fetch(
+    BASE_URL + "/3/movie/popular?api_key=" + process.env.REACT_APP_API_KEY + "&page=" + pageIndex
+  );
+  let json = await response.json();
+  return json.results;
 }

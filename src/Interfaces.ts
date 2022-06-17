@@ -60,3 +60,8 @@ export interface CastMember {
   name: string;
   original_name: string;
 }
+
+export interface SliderSection {
+  sectionTitle: string;
+  pageIndex: number;
+}

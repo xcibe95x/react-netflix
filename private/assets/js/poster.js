@@ -7,8 +7,18 @@ function paintPlayer() {
   let mediaPlayerShowTimer;
   let moviePoster = document.querySelectorAll(".movie-poster");
   for (let i = 0; i < moviePoster.length; i++) {
+    if (window.innerWidth < 480) {
+      moviePoster[i].addEventListener("click", async (e) => {
+        const id = e.target.getAttribute("movie");
+        const data = await fetchMovieData(id);
+        fillDialog(data);
+        openDialog(e);
+      });
+      continue;
+    }
+
     moviePoster[i].addEventListener("mouseenter", (e) => {
-      const id = e.target.getAttribute('movie');
+      const id = e.target.getAttribute("movie");
 
       // fetch movie data after 500ms
       apiTimer = setTimeout(() => {
