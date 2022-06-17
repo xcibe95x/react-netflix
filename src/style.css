@@ -113,3 +113,31 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.placeholder {
+  width: 100%;
+  padding-top: 56%;
+  background: linear-gradient(to right, transparent 8%, rgba(255, 255, 255, 0.25) 18%, transparent 33%);
+  background-size: 200%;
+
+  background-color: #2f2f2f;
+  animation: loading 2s ease-in-out infinite;
+}
+
+.ratio_16-9 {
+  padding-top: 56%;
+}
+
+.ratio_9-16 {
+  padding-top: 178%;
+}
+
+@keyframes loading {
+  from {
+    background-position: -100%;
+  }
+
+  to {
+    background-position: 100%;
+  }
+}

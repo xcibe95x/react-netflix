@@ -59,3 +59,15 @@ export interface SliderSection {
   sectionTitle: string;
   pageIndex: number;
 }
+
+export enum Ratio {
+  ratio_16x9 = "ratio_16-9",
+  ratio_9x16 = "ratio_9-16",
+}
+
+export interface Image {
+  style: string;
+  src: string;
+  alt: string;
+  ratio: Ratio;
+}

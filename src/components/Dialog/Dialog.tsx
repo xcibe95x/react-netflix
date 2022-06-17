@@ -1,41 +1,44 @@
 import { FC, useEffect, useRef, useState } from "react";
 import styles from "./Dialog.module.css";
-import { CastMember, Movie } from "../../Interfaces";
+import { CastMember, Movie, Ratio } from "../../Interfaces";
 import { fetchCast, fetchSimilarMovies, POSTER_API } from "../../api";
 import { useMovieLogo } from "../../useMovieLogo";
 import DialogCard from "../DialogCard/DialogCard";
+import LazyLoadImg from "../LazyLoadImg/LazyLoadImg";
 
- /**
-   * Convert number of minutes to a formattet string of type "xxHyyM" that represents the movie runtime.
-   * @param {number} minutes number of minutes
-   * @return {string} formatted string
-   */
-  function formatRuntime(minutes: number): string {
-    return "" + Math.floor(minutes / 60) + "h " + (minutes % 60) + "min";
-  }
+/**
+ * Convert number of minutes to a formattet string of type "xxHyyM" that represents the movie runtime.
+ * @param {number} minutes number of minutes
+ * @return {string} formatted string
+ */
+function formatRuntime(minutes: number): string {
+  return "" + Math.floor(minutes / 60) + "h " + (minutes % 60) + "min";
+}
 
 const Dialog = (movie: Movie) => {
   const similarMoviesRef = useRef<HTMLDivElement>(null);
   const logo = useMovieLogo(movie.id);
-  const [movieArr, setMovieArr]=useState<Movie[]>([]);
+  const [movieArr, setMovieArr] = useState<Movie[]>([]);
   const [castArr, setCastArr] = useState<CastMember[]>([]);
 
   useEffect(() => {
-    fetchCast(movie.id).then((res)=> setCastArr(res.slice(0, 5)))
-    fetchSimilarMovies(movie.id).then((res)=>setMovieArr(res))
-  }, [])
-
-  
-
+    fetchCast(movie.id).then((res) => setCastArr(res.slice(0, 5)));
+    fetchSimilarMovies(movie.id).then((res) => setMovieArr(res));
+  }, []);
 
   return (
     <div className={styles.opacityOverlay}>
       <div className={styles.dialog}>
         {/* <!-- DIALOG IMAGE + OVERLAY  --> */}
         <div className={styles.dialogImgShadow}>
-          <img className={styles.dialogImg} src={POSTER_API + movie.backdrop_path} alt="img" />
+          <LazyLoadImg
+            style={styles.dialogImg}
+            src={POSTER_API + movie.backdrop_path}
+            ratio={Ratio.ratio_16x9}
+            alt="img"
+          />
           <div className={styles.dialogOverlay}>
-            <img className={styles.dialogLogo} src={logo} alt="Movie logo" />
+            <img className={styles.dialogLogo} src={logo} alt={movie.title} />
             <div className={styles.dialogControls}>
               <button className={styles.dialogButton}>
                 <i className="fas fa-play "></i>
@@ -66,10 +69,22 @@ const Dialog = (movie: Movie) => {
           </div>
           <div className={styles.dialogTextRight}>
             <p className={styles.rightSection}>
-            <span className={styles.grey}>Cast: </span>{castArr.map((castMember, index)=> <a href="">{castMember.name}{index == castArr.length-1 ? "" : ", "}</a>)}
+              <span className={styles.grey}>Cast: </span>
+              {castArr.map((castMember, index) => (
+                <a href="">
+                  {castMember.name}
+                  {index == castArr.length - 1 ? "" : ", "}
+                </a>
+              ))}
             </p>
             <p className={styles.rightSection}>
-            <span className={styles.grey}>Genres: </span>{movie.genres.map((genere, index) => <a href="">{genere.name}{index == movie.genres.length - 1 ? "" : ", "}</a>)}
+              <span className={styles.grey}>Genres: </span>
+              {movie.genres.map((genere, index) => (
+                <a href="">
+                  {genere.name}
+                  {index == movie.genres.length - 1 ? "" : ", "}
+                </a>
+              ))}
             </p>
           </div>
         </div>
@@ -77,8 +92,10 @@ const Dialog = (movie: Movie) => {
         {/* <!-- SIMILAR MOVIES SECTION --> */}
         <h3 className={styles.dialogHeading}>Similar movies</h3>
         <div className={styles.dialogSimilarMovies} ref={similarMoviesRef}>
-          {movieArr.map((movie, index)=> <DialogCard {...movie} key= {index} />)};
-
+          {movieArr.map((movie, index) => (
+            <DialogCard {...movie} key={index} />
+          ))}
+          ;
         </div>
       </div>
     </div>
