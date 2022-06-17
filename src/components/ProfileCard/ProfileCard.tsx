@@ -1,16 +1,16 @@
 import { FC, useContext } from "react";
-import { IProfileCard, UserContext } from "../../Interfaces";
+import { UserContext, User } from "../../Interfaces";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./ProfileCard.module.css";
 
-const ProfileCard: FC<IProfileCard> = ({ name, imgFilename }) => {
-  const { user, setUser } = useContext(UserContext);
+const ProfileCard = (user: User) => {
+  const { loggedUser, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   function logUser() {
-    if (name) {
-      setUser(name);
+    if (user.name) {
+      setUser(user);
       navigate("/home");
     }
   }
@@ -20,11 +20,13 @@ const ProfileCard: FC<IProfileCard> = ({ name, imgFilename }) => {
       <button onClick={logUser}>
         <img
           className={styles.profileImg}
-          src={require(`../../assets/images/${imgFilename || "addProfile.png"}`)}
+          src={require(`../../assets/images/${
+            user.profilePic || "addProfile.png"
+          }`)}
           alt="Profile image"
         />
       </button>
-      <h4 className={styles.profileName}>{name || "Add God"}</h4>
+      <h4 className={styles.profileName}>{user.name || "Add God"}</h4>
     </div>
   );
 };

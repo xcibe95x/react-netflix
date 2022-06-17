@@ -12,12 +12,18 @@ export interface IProfileCard {
  * User Context Interface, defines the currently logged user and a function to update it.
  */
 export interface IUserContext {
-  user?: string;
-  setUser(newUser: string): void;
+  loggedUser: User;
+  setUser(newUser: User): void;
+  users: User[]
+}
+
+export interface User{
+  name: string,
+  profilePic: string
 }
 
 // CONTEXT
-export const UserContext = createContext<IUserContext>({ setUser: () => {} });
+export const UserContext = createContext<IUserContext>({ loggedUser: {name: "", profilePic: ""}, setUser: () => {}, users: [] });
 // ##########################
 
 export interface Genre {

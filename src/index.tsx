@@ -5,7 +5,7 @@ import "./style.css";
 import { Navbar } from "./components/Navbar/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./main/Home";
-import { Movie, UserContext } from "./Interfaces";
+import { Movie, UserContext, User } from "./Interfaces";
 import Dialog from "./components/Dialog/Dialog";
 
 const mockMovie: Movie = {
@@ -28,12 +28,19 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
+const allUsers: User[] = [
+  { name: "Zeus", profilePic: "zeus.jpg" },
+  { name: "Ade", profilePic: "ade.webp" },
+  { name: "Poseidone", profilePic: "poseidone.jpg" },
+  { name: "Apollo", profilePic: "apollo.webp" }
+]
+
 const App: FC = () => {
   // currently logged user
-  const [loggedUser, setLoggedUser] = useState("");
+  const [loggedUser, setLoggedUser] = useState<User>({name: "", profilePic: ""});
 
   return (
-    <UserContext.Provider value={{ user: loggedUser, setUser: setLoggedUser }}>
+    <UserContext.Provider value={{ loggedUser: loggedUser, setUser: setLoggedUser, users: allUsers }}>
       <Navbar />
       <BrowserRouter>
         <Routes>

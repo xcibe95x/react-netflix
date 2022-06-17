@@ -69,3 +69,33 @@
   scrollbar-width: none; /* Firefox */
   scroll-behavior: smooth;
 }
+
+@media screen and (max-width:780px) {
+  .posterContainer{
+    margin-left: -2em;
+  }
+
+  .sliderTitle{
+    padding: 10px 0 0 20px;
+  }
+
+  .godSlider{
+    margin: 1em 0;
+  }
+
+}
+
+@media screen and (max-width:480px) {
+
+  .posterContainer{
+    margin-left: -2em;
+  }
+  .godSlider{
+    margin: 1em 0;
+  }
+  .sliderTitle {
+    padding: 10px 0 0 20px;
+    font-size: 14px;
+    line-height: 14px;
+  }  
+}
