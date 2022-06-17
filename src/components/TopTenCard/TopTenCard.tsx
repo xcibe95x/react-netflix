@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { fetchMovies, POSTER_API } from '../../api';
 import { useMovieLogo } from '../../useMovieLogo';
 
-export const TopTenCard: React.FC<{movie: Movie, index : number }> = ({movie, index}) => {
+export const TopTenCard: React.FC<{movie: Movie, index : number, setMovie: React.Dispatch<React.SetStateAction<Movie | null>>}> = ({movie, index}) => {
   // const [topTen, setTopTen] = useState<Movie[]>([])
 
   // useEffect(()=>{

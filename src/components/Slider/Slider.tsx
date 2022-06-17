@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchMovies } from "../../api";
 import { Movie, SliderSection } from "../../Interfaces";
 import { MovieCard } from "../MovieCard/MovieCard";
@@ -6,7 +6,7 @@ import { TopTenCard } from "../TopTenCard/TopTenCard";
 import { useRef } from "react";
 import styles from "./Slider.module.css";
 
-export const Slider: React.FC<SliderSection> = (attribute) => {
+export const Slider: React.FC<{attribute: SliderSection, setMovie: React.Dispatch<React.SetStateAction<Movie | null>>}> = ({attribute, setMovie}) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const scroll = (scrollOffset: number) => {
@@ -21,7 +21,7 @@ export const Slider: React.FC<SliderSection> = (attribute) => {
 
   const topFix = (index: number, movie: Movie) => {
     if (index < 10) {
-      return <TopTenCard movie={movie} key={index} index={index + 1} />;
+      return <TopTenCard movie={movie} key={index} index={index + 1} setMovie={setMovie}/>;
     }
   };
 
@@ -45,7 +45,7 @@ export const Slider: React.FC<SliderSection> = (attribute) => {
           <div className={styles.posterContainer} ref={ref}>
             {movies.map((movie, i) =>
               attribute.pageIndex != 6 ? (
-                <MovieCard movie={movie} showLogo={attribute.pageIndex != 5} key={i} />
+                <MovieCard movie={movie} showLogo={attribute.pageIndex != 5} setMovie={setMovie} key={i} />
               ) : (
                 topFix(i, movie)
               )

@@ -2,14 +2,14 @@ import { FC } from 'react';
 import { Genre, Movie } from '../../Interfaces';
 import styles from './MediaPlayerModal.module.css';
 
-export const MediaPlayerModal: FC<Movie> = (movie) => {
+export const MediaPlayerModal: FC<{movie: Movie | null}> = ({movie}) => {
 
   // API CALL
 
   return (
 
     <div className={styles.mediaPlayer}>
-      <img className={styles.mPlayerImage} src={movie.backdrop_path} />
+      <img className={styles.mPlayerImage} src={movie?.backdrop_path} />
       <div className={styles.mPlayerContainer}>
         <span className={styles.cardPlay}></span>
         <span className={styles.cardAdd}></span>

@@ -10,6 +10,8 @@ import Help from "../../assetsNavbar/navigation/assistance.svg";
 import { useRef, MouseEvent as RMouseEvent, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { UserContext } from "../../Interfaces";
+import { randomUUID } from "crypto";
+import {v4 as uuid} from 'uuid';
 
 export const Navbar = () => {
   const dropDown = useRef<HTMLUListElement>(null);
@@ -53,43 +55,43 @@ export const Navbar = () => {
             </div>
             {/* List 1 */}
             <ul className={styles.dropDownList} ref={dropDownMobile}>
-              <li>
+              <li key={uuid()} >
                 <a href="#" className={styles.active}>
                   Home
                 </a>
               </li>
-              <li>
+              <li key={uuid()} >
                 <a href="#">Tv Show</a>
               </li>
-              <li>
+              <li key={uuid()} >
                 <a href="#">Movies</a>
               </li>
-              <li>
+              <li key={uuid()} >
                 <a href="#">New and Popular</a>
               </li>
-              <li>
+              <li key={uuid()} >
                 <a href="#">Audio and Subtitles</a>
               </li>
             </ul>
           </div>
           {/* List 2 */}
           <ul className={styles.list}>
-            <li className={styles.listHide}>
+            <li key={uuid()}  className={styles.listHide}>
               <a href="#">
                 <img src={Lens} alt="imgLens" />
               </a>
             </li>
-            <li className={styles.listHide}>
+            <li key={uuid()}  className={styles.listHide}>
               <a href="#" className="GodName">
                 Zeus
               </a>
             </li>
-            <li className={styles.listHide}>
+            <li key={uuid()}  className={styles.listHide}>
               <a href="#">
                 <img src={Bell} alt="imgBell" />
               </a>
             </li>
-            <li>
+            <li key={uuid()} >
               <a href="#">
                 <img
                   src={require("../../assets/images/" + loggedUser.profilePic)}
@@ -98,7 +100,7 @@ export const Navbar = () => {
                 />
               </a>
             </li>
-            <li className={styles.liContainer}>
+            <li key={uuid()}  className={styles.liContainer}>
               <a href="#" className={styles.downIcon}>
                 <img
                   src={Downicon}
@@ -109,7 +111,7 @@ export const Navbar = () => {
               {/* dropdown ul */}
               <ul className={styles.dropDown} ref={dropDown}>
                 {otherUsers.map((el) => (
-                  <li className={styles.liDropdown}>
+                  <li key={uuid()}  className={styles.liDropdown}>
                     <img
                       src={require("../../assets/images/" +
                         el.profilePic)}
@@ -118,16 +120,16 @@ export const Navbar = () => {
                     <a href="#">{el.name}</a>
                   </li>
                 ))}
-                <li className={styles.liDropdown}>
+                <li key={uuid()}  className={styles.liDropdown}>
                   <img src={Pen} alt="imgPen" />
                   <a href="#">Manage profiles</a>
                 </li>
                 <hr />
-                <li className={styles.liDropdown}>
+                <li key={uuid()}  className={styles.liDropdown}>
                   <img src={Accounticon} alt="imgAI" />
                   <a href="#">Account</a>
                 </li>
-                <li className={styles.liDropdown}>
+                <li key={uuid()}  className={styles.liDropdown}>
                   <img src={Help} alt="imgHelp" />
                   <a href="#">Service Center</a>
                 </li>
