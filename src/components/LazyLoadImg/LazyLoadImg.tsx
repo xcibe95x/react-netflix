@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Image } from "../../Interfaces";
 
 const LazyLoadImg = (image: Image) => {
   const [loaded, setLoaded] = useState(false);
 
+  function calcClassName(): string {
+    let clazz = "";
+    if (image.viewportRelative) {
+      clazz += image.ratio + "vpr ";
+      clazz += loaded ? image.style : "placeholder";
+      return clazz;
+    }
+    return loaded ? image.style : "placeholder " + image.ratio;
+  }
+
   return (
-    <img
-      className={loaded ? image.style : "placeholder " + image.ratio}
-      onLoad={() => setLoaded(true)}
-      src={image.src}
-      alt={image.alt}
-      style={{ objectPosition: "top" }}
-      loading="lazy"
-    />
+    <img className={calcClassName()} onLoad={() => setLoaded(true)} src={image.src} alt={image.alt} loading="lazy" />
   );
 };
 

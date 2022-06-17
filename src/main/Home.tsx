@@ -4,9 +4,8 @@ import { useContext, useEffect } from "react";
 import { Movie, UserContext } from "../Interfaces";
 import Hero from "../components/Hero/Hero";
 import { useNavigate } from "react-router-dom";
-import { METHODS } from "http";
 import { Footer } from "../components/Footer/Footer";
-import styles from './Home.module.css';
+import styles from "./Home.module.css";
 
 const mockMovie: Movie = {
   backdrop_path: "/eQnIwnhDuHQiSks3dy0zwrJydWU.jpg",
@@ -27,21 +26,30 @@ const mockMovie: Movie = {
 function Home() {
   const { loggedUser, setUser } = useContext(UserContext);
   const navigate = useNavigate();
-  const titles = ['Most popular on Godflex', `${loggedUser.name}${", " + "Keep Watching"}`, 'Trending Now', 'Coming Soon', 'Top Rated', 'Top Picks For You', `Title's You May Like` ];
+  const titles = [
+    "Most popular on Godflex",
+    `${loggedUser.name}${", " + "Keep Watching"}`,
+    "Trending Now",
+    "Coming Soon",
+    "Top Rated",
+    "Top Picks For You",
+    `Title's You May Like`,
+  ];
 
   useEffect(() => {
-    if (!loggedUser) navigate("/");
+    if (!loggedUser.name) navigate("/");
   }, []);
 
   return (
     <>
-    <MediaPlayerModal {...mockMovie}/>
-      <Hero/>
-    <div className={styles.wrapper}>
-    {titles.map((title, i) => <Slider sectionTitle={title} pageIndex={i + 1} key={i}/>)}
-    </div>
-      <Footer/>
-
+      <MediaPlayerModal {...mockMovie} />
+      <Hero />
+      <div className={styles.wrapper}>
+        {titles.map((title, i) => (
+          <Slider sectionTitle={title} pageIndex={i + 1} key={i} />
+        ))}
+      </div>
+      <Footer />
     </>
   );
 }

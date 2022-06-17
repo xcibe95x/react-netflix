@@ -70,32 +70,30 @@
   scroll-behavior: smooth;
 }
 
-@media screen and (max-width:780px) {
-  .posterContainer{
+@media screen and (max-width: 780px) {
+  .posterContainer {
     margin-left: -2em;
   }
 
-  .sliderTitle{
+  .sliderTitle {
     padding: 10px 0 0 20px;
   }
 
-  .godSlider{
+  .godSlider {
     margin: 1em 0;
   }
-
 }
 
-@media screen and (max-width:480px) {
-
-  .posterContainer{
+@media screen and (max-width: 480px) {
+  .posterContainer {
     margin-left: -2em;
   }
-  .godSlider{
+  .godSlider {
     margin: 1em 0;
   }
   .sliderTitle {
     padding: 10px 0 0 20px;
     font-size: 14px;
     line-height: 14px;
-  }  
+  }
 }

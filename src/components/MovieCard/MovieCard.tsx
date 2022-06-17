@@ -13,10 +13,11 @@ export const MovieCard: React.FC<{ movie: Movie; showLogo: boolean }> = ({ movie
         {movie.vote_average > 7.8 && <span className={styles.topTen}></span>}
         {showLogo && <img src={logoPath} className={styles.movieLogo}></img>}
         <LazyLoadImg
-          ratio={showLogo ? Ratio.ratio_16x9 : Ratio.ratio_9x16}
+          ratio={showLogo ? Ratio.ratio_16x9 : Ratio.ratio_2x3}
           alt={movie.title}
           src={POSTER_API + (showLogo ? movie.backdrop_path : movie.poster_path)}
           style=""
+          viewportRelative={true}
         />
       </div>
     );

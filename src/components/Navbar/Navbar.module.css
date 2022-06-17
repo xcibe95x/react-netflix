@@ -17,11 +17,7 @@
   align-items: center;
   padding: 24px 56px;
   /* background: #18181899; */
-  background-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.89) 10%,
-    rgba(0, 0, 0, 0)
-  );
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.89) 10%, rgba(0, 0, 0, 0));
   position: fixed;
   z-index: 10;
 }
@@ -129,6 +125,11 @@
     display: none;
   }
 
+  .navDesktop {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
   .navDesktop a:hover {
     color: white;
   }
@@ -172,10 +173,8 @@
     border: 1px solid rgba(255, 255, 255, 0.151);
     font-size: 14px;
   }
-}
 
-@media screen and (max-width: 480px) {
-  .list {
-    display: none;
+  .logoImg {
+    height: 24px;
   }
 }

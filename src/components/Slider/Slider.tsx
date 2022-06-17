@@ -5,20 +5,16 @@ import { MovieCard } from "../MovieCard/MovieCard";
 import styles from "./Slider.module.css";
 
 export const Slider: React.FC<SliderSection> = (attribute) => {
-
   const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
-    fetchMovies(attribute.pageIndex)
-    .then(res => setMovies(res));
-  }, [])
+    fetchMovies(attribute.pageIndex).then((res) => setMovies(res));
+  }, []);
 
   return (
     <>
       <div className={styles.godSlider}>
-        <h3 className={styles.sliderTitle}>
-          {attribute.sectionTitle}
-        </h3>
+        <h3 className={styles.sliderTitle}>{attribute.sectionTitle}</h3>
         <span className={styles.seeAllArrow}>
           <i className="fas fa-chevron-right"></i>
         </span>
@@ -27,9 +23,9 @@ export const Slider: React.FC<SliderSection> = (attribute) => {
         </span>
         <div className={styles.movieSection}>
           <div className={styles.posterContainer}>
-        
-        {movies.map((movie, i) => <MovieCard movie={movie} showLogo={attribute.pageIndex != 5} key={i}/>)}
-
+            {movies.map((movie, i) => (
+              <MovieCard movie={movie} showLogo={attribute.pageIndex != 5} key={i} />
+            ))}
           </div>
         </div>
       </div>

@@ -16,6 +16,7 @@ const DialogCard = (movie: Movie) => {
           src={POSTER_API + movie.backdrop_path}
           alt={movie.title}
           ratio={Ratio.ratio_16x9}
+          viewportRelative={false}
         />
 
         <img className={styles.cardLogo} src={logo} alt={movie.title} />

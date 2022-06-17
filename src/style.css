@@ -116,20 +116,28 @@ a {
 
 .placeholder {
   width: 100%;
-  padding-top: 56%;
+
   background: linear-gradient(to right, transparent 8%, rgba(255, 255, 255, 0.25) 18%, transparent 33%);
   background-size: 200%;
-
   background-color: #2f2f2f;
   animation: loading 2s ease-in-out infinite;
 }
 
-.ratio_16-9 {
-  padding-top: 56%;
+.ratio_16x9vpr {
+  height: calc((100vw / 6.5) * (9 / 16));
 }
 
-.ratio_9-16 {
-  padding-top: 178%;
+.ratio_2x3vpr {
+  min-height: calc((100vw / 6.5) * (3 / 2));
+  height: calc((100vw / 6.5) * (3 / 2));
+}
+
+.ratio_16x9 {
+  height: calc(100% * (9 / 16));
+}
+
+.ratio_1x1 {
+  height: 100%;
 }
 
 @keyframes loading {
@@ -139,5 +147,27 @@ a {
 
   to {
     background-position: 100%;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .ratio_16x9vpr {
+    height: calc((100vw / 4.5) * (9 / 16));
+  }
+
+  .ratio_2x3vpr {
+    min-height: calc((100vw / 4.5) * (3 / 2));
+    height: calc((100vw / 4.5) * (3 / 2));
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .ratio_16x9vpr {
+    height: calc((100vw / 2.5) * (9 / 16));
+  }
+
+  .ratio_2x3vpr {
+    min-height: calc((100vw / 2.5) * (3 / 2));
+    height: calc((100vw / 2.5) * (3 / 2));
   }
 }

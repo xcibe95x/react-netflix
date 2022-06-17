@@ -36,6 +36,7 @@ const Dialog = (movie: Movie) => {
             src={POSTER_API + movie.backdrop_path}
             ratio={Ratio.ratio_16x9}
             alt="img"
+            viewportRelative={false}
           />
           <div className={styles.dialogOverlay}>
             <img className={styles.dialogLogo} src={logo} alt={movie.title} />

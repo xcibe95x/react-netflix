@@ -14,16 +14,20 @@ export interface IProfileCard {
 export interface IUserContext {
   loggedUser: User;
   setUser(newUser: User): void;
-  users: User[]
+  users: User[];
 }
 
-export interface User{
-  name: string,
-  profilePic: string
+export interface User {
+  name: string;
+  profilePic: string;
 }
 
 // CONTEXT
-export const UserContext = createContext<IUserContext>({ loggedUser: {name: "", profilePic: ""}, setUser: () => {}, users: [] });
+export const UserContext = createContext<IUserContext>({
+  loggedUser: { name: "", profilePic: "" },
+  setUser: () => {},
+  users: [],
+});
 // ##########################
 
 export interface Genre {
@@ -67,8 +71,9 @@ export interface SliderSection {
 }
 
 export enum Ratio {
-  ratio_16x9 = "ratio_16-9",
-  ratio_9x16 = "ratio_9-16",
+  ratio_16x9 = "ratio_16x9",
+  ratio_2x3 = "ratio_2x3",
+  ratio_1x1 = "ratio_1x1",
 }
 
 export interface Image {
@@ -76,4 +81,5 @@ export interface Image {
   src: string;
   alt: string;
   ratio: Ratio;
+  viewportRelative: boolean;
 }
