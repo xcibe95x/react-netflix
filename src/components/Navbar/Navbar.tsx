@@ -10,7 +10,6 @@ import Help from "../../assetsNavbar/navigation/assistance.svg";
 import { useRef, MouseEvent as RMouseEvent, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { UserContext } from "../../Interfaces";
-import { randomUUID } from "crypto";
 import {v4 as uuid} from 'uuid';
 
 export const Navbar = () => {
@@ -46,7 +45,7 @@ export const Navbar = () => {
           <div>
             {/* List Hide */}
             <div className={styles.HideButton}>
-              <a href="#">Browse</a>
+              <a onClick={(e) => toggleDropdown(e, dropDownMobile.current!)} href="#">Browse</a>
               <img
                 src={Downicon}
                 alt="downIcon"

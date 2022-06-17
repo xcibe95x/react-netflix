@@ -47,6 +47,7 @@
 .downIcon {
   position: relative;
   right: 8px;
+  cursor: pointer;
 }
 
 .active,
@@ -58,7 +59,8 @@
 /* Dropdown */
 
 .dropDown {
-  background: rgba(0, 0, 0, 0.9);
+  /* background: rgba(0, 0, 0, 0.9); */
+  background: #181818ad;
   position: absolute;
   display: none;
   width: 210px;
@@ -90,9 +92,9 @@
   color: white;
 }
 
-.liDropdown:hover {
+/* .liDropdown:hover {
   text-decoration: underline;
-}
+} */
 
 .liDropdown:last-child {
   margin-top: 16px;
@@ -100,6 +102,10 @@
 
 .HideButton {
   display: none;
+}
+
+.HideButton > img {
+  cursor: pointer;
 }
 
 .Hide {
@@ -141,7 +147,9 @@
     margin-top: 1em;
     background-color: black;
     padding: 1.5em 0;
-    background: rgba(0, 0, 0, 0.9);
+    /* background: rgba(0, 0, 0, 0.9); */
+    background: #181818da;
+
     border: 1px solid rgba(255, 255, 255, 0.151);
   }
 
