@@ -30,7 +30,7 @@ function Home() {
   const titles = ['Most popular on Godflex', `${loggedUser.name}${", " + "Keep Watching"}`, 'Trending Now', 'Coming Soon', 'Top Rated', 'Top Picks For You', `Title's You May Like` ];
 
   useEffect(() => {
-    if (!loggedUser) navigate("/");
+    if (!loggedUser.name) navigate("/");
   }, []);
 
   return (
