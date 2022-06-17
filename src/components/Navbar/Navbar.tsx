@@ -83,7 +83,7 @@ export const Navbar = () => {
             </li>
             <li key={uuid()}  className={styles.listHide}>
               <a href="#" className="GodName">
-                Zeus
+                {loggedUser.name}
               </a>
             </li>
             <li key={uuid()}  className={styles.listHide}>
