@@ -7,161 +7,139 @@ import Downicon from "../../assetsNavbar/navigation/Downicon.png";
 import Pen from "../../assetsNavbar/navigation/pen-icon.svg";
 import Accounticon from "../../assetsNavbar/navigation/account-icon.svg";
 import Help from "../../assetsNavbar/navigation/assistance.svg";
-import { useRef, MouseEvent as RMouseEvent } from "react";
+import { useRef, MouseEvent as RMouseEvent, useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { UserContext } from "../../Interfaces";
 
 export const Navbar = () => {
   const dropDown = useRef<HTMLUListElement>(null);
-
-  const closeDropdown = (innerEvent: MouseEvent) => {
-    if (!dropDown.current!.contains(innerEvent.target as Node)) {
-      dropDown.current!.style.display = "none";
-      document.body.removeEventListener("click", closeDropdown);
-    }
-  };
-
-  const toggleDropdown = (event: RMouseEvent) => {
-    dropDown.current!.style.display = "block";
-    event.stopPropagation();
-    document.body.addEventListener("click", closeDropdown);
-  };
-
-  const dropDown1 = useRef<HTMLUListElement>(null);
-
-  const closeDropdown1 = (innerEvent1: MouseEvent) => {
-    if (!dropDown1.current!.contains(innerEvent1.target as Node)) {
-      dropDown1.current!.style.display = "none";
-      document.body.removeEventListener("click", closeDropdown1);
-    }
-  };
-
-  const toggleDropdown1 = (event1: RMouseEvent) => {
-    dropDown1.current!.style.display = "flex";
-    event1.stopPropagation();
-    document.body.addEventListener("click", closeDropdown1);
-  };
-
+  const dropDownMobile = useRef<HTMLUListElement>(null);
+  const { loggedUser, setUser, users } = useContext(UserContext);
+  const otherUsers = users.filter((el) => loggedUser != el);
   // let location = useLocation();
 
-  // React.useEffect(() => {
-  //   ga("send", "pageview");
-  // }, [location]);
+  function closure(dropDownElement: HTMLUListElement) {
+    return function closeDropDown(innerEvent: Event) {
+      if (!dropDownElement.contains(innerEvent.target as Node)) {
+        dropDownElement.style.display = "none";
+        document.body.removeEventListener("click", closeDropDown);
+      }
+    };
+  }
+
+  const toggleDropdown = (
+    event: RMouseEvent,
+    dropDownElement: HTMLUListElement
+  ) => {
+    dropDownElement.style.display = "block";
+    event.stopPropagation();
+    document.body.addEventListener("click", closure(dropDownElement));
+  };
 
   return (
     <div className={styles.navDesktop}>
       <img src={Logo} alt="logoImg" className={styles.logoImg} />
-      {/* List Hide */}
-      <div className={styles.HideButton}>
-        <a href="#">Browse</a>
-        <img src={Downicon} alt="downIcon" onClick={toggleDropdown1} />
-      </div>
-      <ul className={styles.Hide} ref={dropDown1}>
-        <li>
-          <a href="#" className={styles.active}>
-            Home
-          </a>
-        </li>
-        <hr />
-        <li>
-          <a href="#">Tv Show</a>
-        </li>
-        <hr />
-        <li>
-          <a href="#">Movies</a>
-        </li>
-        <hr />
-        <li>
-          <a href="#">New and Popular</a>
-        </li>
-        <hr />
-        <li>
-          <a href="#">Audio and Subtitles</a>
-        </li>
-      </ul>
-      {/* List 1 */}
-      <ul className={styles.list}>
-        <li className={styles.listHide}>
-          <a href="#" className={styles.active}>
-            Home
-          </a>
-        </li>
-        <li className={styles.listHide}>
-          <a href="#">Tv Show</a>
-        </li>
-        <li className={styles.listHide}>
-          <a href="#">Movies</a>
-        </li>
-        <li className={styles.listHide}>
-          <a href="#">New and Popular</a>
-        </li>
-        <li className={styles.listHide}>
-          <a href="#">Audio and Subtitles</a>
-        </li>
-      </ul>
-      {/* List 2 */}
-      <ul className={styles.list}>
-        <li className={styles.listHide}>
-          <a href="#">
-            <img src={Lens} alt="imgLens" />
-          </a>
-        </li>
-        <li className={styles.listHide}>
-          <a href="#" className="GodName">
-            Zeus
-          </a>
-        </li>
-        <li className={styles.listHide}>
-          <a href="#">
-            <img src={Bell} alt="imgBell" />
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src={Pp} alt="imgPp" className={styles.imgPp} />
-          </a>
-        </li>
-        <li className={styles.liContainer}>
-          <a href="#" className={styles.downIcon}>
-            <img src={Downicon} alt="imgDropdown" onClick={toggleDropdown} className={styles.listHide} />
-          </a>
-          {/* dropdown ul */}
-          <ul className={styles.dropDown} ref={dropDown}>
-            <li className={styles.liDropdown}>
-              <img src={Pp} alt="" />
-              <a href="#">Zeus</a>
+      {loggedUser.name && (
+        <>
+          <div>
+            {/* List Hide */}
+            <div className={styles.HideButton}>
+              <a href="#">Browse</a>
+              <img
+                src={Downicon}
+                alt="downIcon"
+                onClick={(e) => toggleDropdown(e, dropDownMobile.current!)}
+              />
+            </div>
+            {/* List 1 */}
+            <ul className={styles.dropDownList} ref={dropDownMobile}>
+              <li>
+                <a href="#" className={styles.active}>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#">Tv Show</a>
+              </li>
+              <li>
+                <a href="#">Movies</a>
+              </li>
+              <li>
+                <a href="#">New and Popular</a>
+              </li>
+              <li>
+                <a href="#">Audio and Subtitles</a>
+              </li>
+            </ul>
+          </div>
+          {/* List 2 */}
+          <ul className={styles.list}>
+            <li className={styles.listHide}>
+              <a href="#">
+                <img src={Lens} alt="imgLens" />
+              </a>
             </li>
-            <li className={styles.liDropdown}>
-              <img src={Pp} alt="" />
-              <a href="#">Ade</a>
+            <li className={styles.listHide}>
+              <a href="#" className="GodName">
+                Zeus
+              </a>
             </li>
-            <li className={styles.liDropdown}>
-              <img src={Pp} alt="" />
-              <a href="#">Poseidone</a>
+            <li className={styles.listHide}>
+              <a href="#">
+                <img src={Bell} alt="imgBell" />
+              </a>
             </li>
-            <li className={styles.liDropdown}>
-              <img src={Pp} alt="" />
-              <a href="#">Apollo</a>
+            <li>
+              <a href="#">
+                <img
+                  src={require("../../assets/images/" + loggedUser.profilePic)}
+                  alt="Logged user profile pic"
+                  className={styles.imgPp}
+                />
+              </a>
             </li>
-            <li className={styles.liDropdown}>
-              <img src={Pen} alt="imgPen" />
-              <a href="#">Manage profiles</a>
+            <li className={styles.liContainer}>
+              <a href="#" className={styles.downIcon}>
+                <img
+                  src={Downicon}
+                  alt="imgDropdown"
+                  onClick={(e) => toggleDropdown(e, dropDown.current!)}
+                />
+              </a>
+              {/* dropdown ul */}
+              <ul className={styles.dropDown} ref={dropDown}>
+                {otherUsers.map((el) => (
+                  <li className={styles.liDropdown}>
+                    <img
+                      src={require("../../assets/images/" +
+                        el.profilePic)}
+                      alt="Other users profile pic"
+                    />
+                    <a href="#">{el.name}</a>
+                  </li>
+                ))}
+                <li className={styles.liDropdown}>
+                  <img src={Pen} alt="imgPen" />
+                  <a href="#">Manage profiles</a>
+                </li>
+                <hr />
+                <li className={styles.liDropdown}>
+                  <img src={Accounticon} alt="imgAI" />
+                  <a href="#">Account</a>
+                </li>
+                <li className={styles.liDropdown}>
+                  <img src={Help} alt="imgHelp" />
+                  <a href="#">Service Center</a>
+                </li>
+                <hr />
+                <p className={styles.liDropdown}>
+                  <a href="#">Exit Godflex</a>
+                </p>
+              </ul>
             </li>
-            <hr />
-            <li className={styles.liDropdown}>
-              <img src={Accounticon} alt="imgAI" />
-              <a href="#">Account</a>
-            </li>
-            <li className={styles.liDropdown}>
-              <img src={Help} alt="imgHelp" />
-              <a href="#">Service Center</a>
-            </li>
-            <hr />
-            <p className={styles.liDropdown}>
-              <a href="#">Exit Godflex</a>
-            </p>
           </ul>
-        </li>
-      </ul>
+        </>
+      )}
     </div>
   );
 };

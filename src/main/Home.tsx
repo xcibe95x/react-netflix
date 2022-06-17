@@ -25,12 +25,12 @@ const mockMovie: Movie = {
 };
 
 function Home() {
-  const { user, setUser } = useContext(UserContext);
+  const { loggedUser, setUser } = useContext(UserContext);
   const navigate = useNavigate();
-  const titles = ['Most popular on Godflex', `${user}${", " + "Keep Watching"}`, 'Trending Now', 'Coming Soon', 'Top Rated', 'Top Picks For You', `Title's You May Like` ];
+  const titles = ['Most popular on Godflex', `${loggedUser.name}${", " + "Keep Watching"}`, 'Trending Now', 'Coming Soon', 'Top Rated', 'Top Picks For You', `Title's You May Like` ];
 
   useEffect(() => {
-    if (user === "") navigate("/");
+    if (!loggedUser) navigate("/");
   }, []);
 
   return (
