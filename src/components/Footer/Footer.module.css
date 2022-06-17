@@ -24,6 +24,7 @@
   
 .footerLinks ul li {
     margin-bottom: 1.2em;
+    list-style-type: none;
 }
   
 .footerLinks ul li a {
