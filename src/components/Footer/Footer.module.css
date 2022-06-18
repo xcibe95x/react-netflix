@@ -55,3 +55,20 @@
     font-size: max(7px, 0.7vw);
     color: var(--clearwhite);
 }
+
+@media screen and (max-width:884px) {
+    .footer{
+        width: 90%;
+    }
+    
+}
+
+@media screen and (max-width: 590px) {
+    .footerLinks {
+      flex-wrap: wrap;
+    }
+  
+    .footerLinks ul {
+      width: 50%;
+    }
+  }
