@@ -1,10 +1,10 @@
-.navDesktop a {
-  text-decoration: none;
+.navDesktop span {
   color: white;
   transition: color ease-out 0.5s;
+  cursor: pointer;
 }
 
-.navDesktop a:hover {
+.navDesktop span:hover {
   color: #808080;
 }
 .navDesktop ul {
@@ -44,9 +44,7 @@
   border-radius: 4px;
 }
 
-.downIcon {
-  position: relative;
-  right: 8px;
+.liContainer {
   cursor: pointer;
 }
 
@@ -108,8 +106,8 @@
   cursor: pointer;
 }
 
-.Hide {
-  display: none;
+.showOnMobile {
+  display: block;
 }
 
 @media screen and (max-width: 1060px) {
@@ -136,7 +134,7 @@
     padding-right: 24px;
   }
 
-  .navDesktop a:hover {
+  .navDesktop span:hover {
     color: white;
   }
 
@@ -149,10 +147,13 @@
     padding: 1.5em 0;
     /* background: rgba(0, 0, 0, 0.9); */
     background: #181818da;
-
     border: 1px solid rgba(255, 255, 255, 0.151);
   }
 
+  .showOnMobile {
+    display: block;
+  }
+  
   .dropDownList li {
     padding: 1em 2.5em;
     transition: background-color 0.1s ease;
@@ -165,21 +166,6 @@
   .HideButton {
     display: flex;
     gap: 0.5em;
-  }
-
-  .Hide {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    left: 15em;
-    top: 5em;
-    gap: 1em;
-    background: #18181899;
-    width: 150px;
-    padding: 16px;
-    z-index: 10;
-    border: 1px solid rgba(255, 255, 255, 0.151);
-    font-size: 14px;
   }
 
   .logoImg {

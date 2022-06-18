@@ -41,8 +41,8 @@ const App: FC = () => {
 
   return (
     <UserContext.Provider value={{ loggedUser: loggedUser, setUser: setLoggedUser, users: allUsers }}>
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<UserSelect />} />
           <Route path="/home" element={<Home />} />
