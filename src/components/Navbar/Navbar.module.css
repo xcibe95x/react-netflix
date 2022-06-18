@@ -1,10 +1,10 @@
-.navDesktop a {
-  text-decoration: none;
+.navDesktop span {
   color: white;
   transition: color ease-out 0.5s;
+  cursor: pointer;
 }
 
-.navDesktop a:hover {
+.navDesktop span:hover {
   color: #808080;
 }
 .navDesktop ul {
@@ -44,9 +44,7 @@
   border-radius: 4px;
 }
 
-.downIcon {
-  position: relative;
-  right: 8px;
+.liContainer {
   cursor: pointer;
 }
 
@@ -136,7 +134,7 @@
     padding-right: 24px;
   }
 
-  .navDesktop a:hover {
+  .navDesktop span:hover {
     color: white;
   }
 

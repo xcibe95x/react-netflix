@@ -7,7 +7,7 @@ import Downicon from "../../assetsNavbar/navigation/Downicon.png";
 import Pen from "../../assetsNavbar/navigation/pen-icon.svg";
 import Accounticon from "../../assetsNavbar/navigation/account-icon.svg";
 import Help from "../../assetsNavbar/navigation/assistance.svg";
-import { useRef, MouseEvent as RMouseEvent, useContext } from "react";
+import { useRef, MouseEvent as RMouseEvent, useContext, useMemo, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Interfaces";
 import {v4 as uuid} from 'uuid';
@@ -16,15 +16,14 @@ export const Navbar = () => {
   const dropDown = useRef<HTMLUListElement>(null);
   const dropDownMobile = useRef<HTMLUListElement>(null);
   const { loggedUser, setUser, users } = useContext(UserContext);
-  const otherUsers = users.filter((el) => loggedUser != el);
+  const otherUsers = users.filter((el) => loggedUser.name != el.name);
   const navigate = useNavigate();
   // let location = useLocation();
-  
 
   function closure(dropDownElement: HTMLUListElement) {
     return function closeDropDown(innerEvent: Event) {
       if (!dropDownElement.contains(innerEvent.target as Node)) {
-        dropDownElement.style.display = "none";
+        dropDownElement.style.display = "none"; 
         document.body.removeEventListener("click", closeDropDown);
       }
     };
@@ -40,6 +39,7 @@ export const Navbar = () => {
   };
 
   const logOut = () => {
+    setUser({name: "", profilePic: ""})
     navigate("/");
   }
 
@@ -51,7 +51,7 @@ export const Navbar = () => {
           <div>
             {/* List Hide */}
             <div className={styles.HideButton}>
-              <a onClick={(e) => toggleDropdown(e, dropDownMobile.current!)} href="#">Browse</a>
+              <span onClick={(e) => toggleDropdown(e, dropDownMobile.current!)}>Browse</span>
               <img
                 src={Downicon}
                 alt="downIcon"
@@ -61,86 +61,83 @@ export const Navbar = () => {
             {/* List 1 */}
             <ul className={styles.dropDownList} ref={dropDownMobile}>
               <li key={uuid()} >
-                <a href="#" className={styles.active}>
+                <span className={styles.active}>
                   Home
-                </a>
+                </span>
               </li>
               <li key={uuid()} >
-                <a href="#">Tv Show</a>
+                <span>Tv Show</span>
               </li>
               <li key={uuid()} >
-                <a href="#">Movies</a>
+                <span>Movies</span>
               </li>
               <li key={uuid()} >
-                <a href="#">New and Popular</a>
+                <span>New and Popular</span>
               </li>
               <li key={uuid()} >
-                <a href="#">Audio and Subtitles</a>
+                <span>Audio and Subtitles</span>
               </li>
             </ul>
           </div>
           {/* List 2 */}
           <ul className={styles.list}>
             <li key={uuid()}  className={styles.listHide}>
-              <a href="#">
+              <span>
                 <img src={Lens} alt="imgLens" />
-              </a>
+              </span>
             </li>
             <li key={uuid()}  className={styles.listHide}>
-              <a href="#" className="GodName">
+              <span className="GodName">
                 {loggedUser.name}
-              </a>
+              </span>
             </li>
             <li key={uuid()}  className={styles.listHide}>
-              <a href="#">
+              <span>
                 <img src={Bell} alt="imgBell" />
-              </a>
+              </span>
             </li>
-            <li key={uuid()} >
-              <a href="#">
+            <li key={uuid()} onClick={(e) => toggleDropdown(e, dropDown.current!)}>
+              <span>
                 <img
                   src={require("../../assets/images/" + loggedUser.profilePic)}
                   alt="Logged user profile pic"
                   className={styles.imgPp}
                 />
-              </a>
+              </span>
             </li>
-            <li key={uuid()}  className={styles.liContainer}>
-              <a href="#" className={styles.downIcon}>
+            <li key={uuid()}  className={styles.liContainer} onClick={(e) => toggleDropdown(e, dropDown.current!)}>
                 <img
                   src={Downicon}
-                  alt="imgDropdown"
-                  onClick={(e) => toggleDropdown(e, dropDown.current!)}
+                  alt="imgDropdown"    
                 />
-              </a>
               {/* dropdown ul */}
               <ul className={styles.dropDown} ref={dropDown}>
                 {otherUsers.map((el) => (
-                  <li key={uuid()}  className={styles.liDropdown}>
+                  <li key={uuid()}  className={styles.liDropdown} onClick={() => setUser(el)} >
                     <img
                       src={require("../../assets/images/" +
                         el.profilePic)}
                       alt="Other users profile pic"
                     />
-                    <a href="#">{el.name}</a>
+                    <span>{el.name}</span>
                   </li>
                 ))}
                 <li key={uuid()}  className={styles.liDropdown}>
                   <img src={Pen} alt="imgPen" />
-                  <a href="#">Manage profiles</a>
+                  <span>Manage profiles</span>
                 </li>
                 <hr />
                 <li key={uuid()}  className={styles.liDropdown}>
                   <img src={Accounticon} alt="imgAI" />
-                  <a href="#">Account</a>
+                  <span>Account</span>
                 </li>
                 <li key={uuid()}  className={styles.liDropdown}>
                   <img src={Help} alt="imgHelp" />
-                  <a href="#">Service Center</a>
+                  <span>Service Center</span>
                 </li>
                 <hr />
                 <p className={styles.liDropdown}>
-                  <a onClick={logOut} href="#">Exit Godflex</a>
+                  <span onClick={logOut}>Exit Godflex</span>
                 </p>
               </ul>
             </li>
