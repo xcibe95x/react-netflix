@@ -5,14 +5,16 @@
   width: 284px;
   background: var(--black);
   border-radius: 8px;
-  margin-top: 20px;
   margin-bottom: 20px;
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.6);
   transform: scale(1.1);
-  transition: all 0.2s ease-in;
   opacity: 0;
-  padding-bottom: 8px;
+  transition: all 0.2s ease-in;
   padding-bottom: 1em;
+}
+.mediaPlayer:hover {
+  transform: scale(1.26);
+  opacity: 1;
 }
 
 .mPlayerImage {
@@ -39,7 +41,7 @@
   padding-top: 6px;
   color: white;
 }
-  
+
 .genre > span:not(:last-child)::after {
   content: " ● ";
   color: #646464;
@@ -84,7 +86,7 @@
 .cardAdd::before,
 .cardLike::before {
   font-weight: 900;
-  font-family: 'Font Awesome 6 Pro';
+  font-family: "Font Awesome 6 Pro";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -93,33 +95,33 @@
 
 .cardMore:hover::before {
   content: "More info";
-  width: 115px;
-  background-color: #E6E6E6;
-  padding: 10px;
+  font-size: 12px;
+  width: 80px;
+  padding: 0.5em;
+  background-color: #e6e6e6;
   text-align: center;
-  font-weight: 900;
-  color: #000000;
+  font-weight: 700;
+  color: #000;
   position: absolute;
   border-radius: 5px;
-  top:-50px;
+  top: -50px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.cardMore:hover::after{
+.cardMore:hover::after {
   content: "";
   width: 0px;
   height: 0px;
   position: absolute;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid #E6E6E6;
+  border-top: 10px solid #e6e6e6;
   border-bottom: 10px solid transparent;
   left: 50%;
   transform: translateX(-50%);
-  top: -12px;
- }
-
+  top: -25px;
+}
 
 .cardPlay:hover {
   background: var(--smokeWhite);
@@ -147,4 +149,14 @@
 .cardLike::before {
   content: "\f164";
   font-weight: 400;
+}
+
+.show {
+  display: block;
+}
+
+@media only screen and (max-width: 480px) {
+  .show {
+    display: none;
+  }
 }

@@ -1,7 +1,7 @@
 import styles from "./DialogCard.module.css";
 import dialogStyles from "../Dialog/Dialog.module.css";
 import { Movie, Ratio } from "../../Interfaces";
-import { useMovieLogo } from "../../useMovieLogo";
+import { useMovieLogo } from "../../utils";
 import { POSTER_API } from "../../api";
 import LazyLoadImg from "../LazyLoadImg/LazyLoadImg";
 
