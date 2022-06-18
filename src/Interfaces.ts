@@ -1,3 +1,4 @@
+import { create } from "domain";
 import { createContext } from "react";
 
 /**
@@ -22,12 +23,34 @@ export interface User {
   profilePic: string;
 }
 
+export interface IMovieContext {
+  movie?: Movie;
+  setMovie(newMovie: Movie): void;
+  setShowMediaPlayer(show: boolean): void;
+  setShowDialog(show: boolean): void;
+  showMediaPlayer: boolean;
+  showDialog: boolean;
+  coords: { top: number; left: number };
+  setCoords(coords: { top: number; left: number }): void;
+}
+
 // CONTEXT
 export const UserContext = createContext<IUserContext>({
   loggedUser: { name: "", profilePic: "" },
   setUser: () => {},
   users: [],
 });
+
+export const MovieContext = createContext<IMovieContext>({
+  setMovie: () => {},
+  showMediaPlayer: false,
+  showDialog: false,
+  setShowDialog: () => {},
+  setShowMediaPlayer: () => {},
+  coords: { top: 0, left: 0 },
+  setCoords: () => {},
+});
+
 // ##########################
 
 export interface Genre {

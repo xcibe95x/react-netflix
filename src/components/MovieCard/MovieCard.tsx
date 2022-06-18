@@ -1,20 +1,50 @@
 import styles from "./MovieCard.module.css";
-import { Movie, Ratio } from "../../Interfaces";
+import { Movie, MovieContext, Ratio } from "../../Interfaces";
 import { POSTER_API } from "../../api";
-import { useMovieLogo } from "../../useMovieLogo";
+import { useMovieLogo } from "../../utils";
 import LazyLoadImg from "../LazyLoadImg/LazyLoadImg";
-import { MouseEvent } from "react";
+import { MouseEvent, useContext, useRef } from "react";
 
-export const MovieCard: React.FC<{ movie: Movie, showLogo: boolean, setMovie: React.Dispatch<React.SetStateAction<Movie | null>> }> = ({ movie, showLogo, setMovie }) => {
+/**
+ * Calculate and returns the cumulative `offsetTop` of the provided `element` from the top of the document.
+ * @param {HTMLElement} element
+ * @returns Total `offsteTop` of the element from the top of the document.
+ */
+function cumulativeOffset(element: Element | null): number {
+  let top = 0;
+  do {
+    top += (element! as HTMLElement).offsetTop || 0;
+    element = (element! as HTMLElement).offsetParent;
+  } while (element);
+
+  return top;
+}
+
+export const MovieCard: React.FC<{
+  movie: Movie;
+  showLogo: boolean;
+}> = ({ movie, showLogo }) => {
   const logoPath = useMovieLogo(movie.id);
+  const { setMovie, setShowMediaPlayer, setShowDialog, setCoords } = useContext(MovieContext);
+  const ref = useRef<HTMLDivElement>(null);
+  let timer: NodeJS.Timeout | null = null;
 
-  const handleMouseEnter = (e: MouseEvent) => {
-    console.log(e.target);
+  function handleMouseEnter(e: MouseEvent) {
+    let rect = ref.current!.getBoundingClientRect();
+    timer = setTimeout(() => {
+      setMovie(movie);
+      setCoords({ top: cumulativeOffset(ref.current!), left: rect.left });
+      setShowMediaPlayer(true);
+    }, 750);
+  }
+
+  function preventSpawn() {
+    clearTimeout(timer!);
   }
 
   if (movie.backdrop_path)
     return (
-      <div onMouseEnter={handleMouseEnter} className={styles.movieCard}>
+      <div ref={ref} onMouseEnter={handleMouseEnter} onMouseLeave={preventSpawn} className={styles.movieCard}>
         {movie.vote_average > 7.8 && <span className={styles.topTen}></span>}
         {showLogo && <img src={logoPath} className={styles.movieLogo}></img>}
         <LazyLoadImg

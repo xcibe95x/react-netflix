@@ -1,27 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React, { CSSProperties, useEffect, useMemo, useState } from "react";
 import { fetchMovies } from "../../api";
 import { Movie, SliderSection } from "../../Interfaces";
 import { MovieCard } from "../MovieCard/MovieCard";
 import { TopTenCard } from "../TopTenCard/TopTenCard";
-import { useRef } from "react";
+import { useRef, MouseEvent, UIEvent } from "react";
 import styles from "./Slider.module.css";
 
-export const Slider: React.FC<{attribute: SliderSection, setMovie: React.Dispatch<React.SetStateAction<Movie | null>>}> = ({attribute, setMovie}) => {
+export const Slider: React.FC<{
+  attribute: SliderSection;
+}> = ({ attribute }) => {
   const ref = useRef<HTMLDivElement>(null);
-
-  const scroll = (scrollOffset: number) => {
-    ref.current!.scrollLeft += scrollOffset;
-  };
-
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const buttonLeftStyle = useMemo(computeButtonLeftStyle, [scrollPosition]);
+  const buttonRightStyle = useMemo(computeButtonRightStyle, [scrollPosition]);
+
+  function computeButtonLeftStyle(): CSSProperties | undefined {
+    return scrollPosition == 0 ? { display: "none" } : undefined;
+  }
+
+  function computeButtonRightStyle(): CSSProperties | undefined {
+    if (ref.current)
+      return ref.current!.scrollLeft + ref.current!.offsetWidth === ref.current!.scrollWidth
+        ? { display: "none" }
+        : undefined;
+    return undefined;
+  }
 
   useEffect(() => {
     fetchMovies(attribute.pageIndex).then((res) => setMovies(res));
   }, []);
 
+  /**
+   *  Scroll on click function. Automatically gets the scroll amount based on current MovieCard size.
+   * @param e Click Event on on of the Slider arrows
+   * @param direction true to scroll right, false otherwise
+   */
+  const clickScroll = (e: MouseEvent, direction: boolean) => {
+    let scrollWidth = ref.current!.firstElementChild!.clientWidth;
+    ref.current!.scrollLeft += direction ? scrollWidth : -scrollWidth;
+    setScrollPosition(ref.current!.scrollLeft);
+  };
+
   const topFix = (index: number, movie: Movie) => {
     if (index < 10) {
-      return <TopTenCard movie={movie} key={index} index={index + 1} setMovie={setMovie}/>;
+      return <TopTenCard movie={movie} key={index} index={index + 1} />;
     }
   };
 
@@ -36,16 +59,28 @@ export const Slider: React.FC<{attribute: SliderSection, setMovie: React.Dispatc
           <i className="fas fa-chevron-right"></i>
         </span>
         <div className={styles.movieSection}>
-          <button className={`${styles.buttonDx} ${styles.sliderButton}`} onClick={() => scroll(300)}>
+          <button
+            style={buttonRightStyle}
+            className={`${styles.buttonDx} ${styles.sliderButton}`}
+            onClick={(e) => clickScroll(e, true)}
+          >
             <i className="far fa-chevron-right fa-2xl"></i>
           </button>
-          <button className={`${styles.buttonSx} ${styles.sliderButton}`} onClick={() => scroll(-300)}>
+          <button
+            style={buttonLeftStyle}
+            className={`${styles.buttonSx} ${styles.sliderButton}`}
+            onClick={(e) => clickScroll(e, false)}
+          >
             <i className="far fa-chevron-left fa-2xl"></i>
           </button>
-          <div className={styles.posterContainer} ref={ref}>
+          <div
+            className={styles.posterContainer}
+            ref={ref}
+            onScroll={(e) => setScrollPosition((e.target as HTMLElement).scrollLeft)}
+          >
             {movies.map((movie, i) =>
               attribute.pageIndex != 6 ? (
-                <MovieCard movie={movie} showLogo={attribute.pageIndex != 5} setMovie={setMovie} key={i} />
+                <MovieCard movie={movie} showLogo={attribute.pageIndex != 5} key={i} />
               ) : (
                 topFix(i, movie)
               )
