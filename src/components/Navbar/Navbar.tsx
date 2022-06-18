@@ -23,7 +23,7 @@ export const Navbar = () => {
   function closure(dropDownElement: HTMLUListElement) {
     return function closeDropDown(innerEvent: Event) {
       if (!dropDownElement.contains(innerEvent.target as Node)) {
-        dropDownElement.style.display = "none"; 
+        dropDownElement.classList.remove(styles.showOnMobile); 
         document.body.removeEventListener("click", closeDropDown);
       }
     };
@@ -33,7 +33,7 @@ export const Navbar = () => {
     event: RMouseEvent,
     dropDownElement: HTMLUListElement
   ) => {
-    dropDownElement.style.display = "block";
+    dropDownElement.classList.add(styles.showOnMobile);
     event.stopPropagation();
     document.body.addEventListener("click", closure(dropDownElement));
   };
