@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { fetchMovieLogo } from "./api";
-import { MovieContext, UserContext } from "./Interfaces";
+import { MovieContext } from "./Interfaces";
 
 export function useMovieLogo(movieId: number | undefined) {
   const [path, setPath] = useState("");
@@ -23,4 +23,19 @@ export function useMovieLogo(movieId: number | undefined) {
  */
 export function formatRuntime(minutes: number): string {
   return "" + Math.floor(minutes / 60) + "h " + (minutes % 60) + "min";
+}
+
+/**
+ * Calculate and returns the cumulative `offsetTop` of the provided `element` from the top of the document.
+ * @param {HTMLElement} element
+ * @returns Total `offsteTop` of the element from the top of the document.
+ */
+export function cumulativeOffset(element: Element | null): number {
+  let top = 0;
+  do {
+    top += (element! as HTMLElement).offsetTop || 0;
+    element = (element! as HTMLElement).offsetParent;
+  } while (element);
+
+  return top;
 }

@@ -1,21 +1,21 @@
+import { useContext, useEffect, useState } from "react";
+import { InView } from "react-intersection-observer";
+import { useNavigate } from "react-router-dom";
+import Dialog from "../components/Dialog/Dialog";
+import { Footer } from "../components/Footer/Footer";
+import Hero from "../components/Hero/Hero";
 import { MediaPlayerModal } from "../components/MediaPlayerModal/MediaPlayerModal";
 import { Slider } from "../components/Slider/Slider";
-import { useContext, useEffect, useState } from "react";
 import { Movie, MovieContext, UserContext } from "../Interfaces";
-import Hero from "../components/Hero/Hero";
-import { useNavigate } from "react-router-dom";
-import { Footer } from "../components/Footer/Footer";
 import styles from "./Home.module.css";
-import Dialog from "../components/Dialog/Dialog";
 
 function Home() {
-  const { loggedUser, setUser } = useContext(UserContext);
+  const { loggedUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [showPlayer, setShowPlayer] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [coords, setCoords] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
   const [movie, setMovie] = useState<Movie | undefined>();
-
   const titles = [
     "Most popular on Godflex",
     `${loggedUser.name}${", " + "Keep Watching"}`,
@@ -25,6 +25,16 @@ function Home() {
     "Top Picks For You",
     `Title's You May Like`,
   ];
+  const [slidersVisibile, setSlidersVisible] = useState<boolean[]>(titles.map(() => false));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setSlidersVisible(slidersVisibile.splice(i, 1, true));
+        observer.unobserve(entry.target);
+      }
+    });
+  });
 
   useEffect(() => {
     if (!loggedUser.name) navigate("/");
@@ -48,7 +58,9 @@ function Home() {
       <Hero />
       <div className={styles.wrapper}>
         {titles.map((title, i) => (
-          <Slider attribute={{ sectionTitle: title, pageIndex: i + 1 }} key={i} />
+          <InView threshold={0.95} triggerOnce={true} key={i}>
+            {({ inView, ref }) => <Slider ref={ref} isVisible={inView} sectionTitle={title} pageIndex={i + 1} />}
+          </InView>
         ))}
       </div>
       <Footer />

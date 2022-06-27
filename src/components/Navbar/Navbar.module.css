@@ -30,6 +30,7 @@
   display: flex;
   align-items: center;
   list-style-type: none;
+  color: white;
   gap: 20px;
   font-size: 16px;
 }
@@ -46,6 +47,7 @@
 
 .liContainer {
   cursor: pointer;
+  color: white;
 }
 
 .active,
@@ -74,12 +76,18 @@
 .dropDownList {
   display: flex;
   gap: 1em;
-  font-size: clamp(12px, .9vw, 20px);
+  font-size: clamp(12px, 0.9vw, 20px);
 }
 
 .dropDown img {
   width: 32px;
   border-radius: 4px;
+  margin-right: 8px;
+}
+
+.dropDown i {
+  text-align: center;
+  width: 32px;
   margin-right: 8px;
 }
 
@@ -100,9 +108,11 @@
 
 .HideButton {
   display: none;
+  color: white;
+  align-items: center;
 }
 
-.HideButton > img {
+.HideButton > i {
   cursor: pointer;
 }
 
@@ -145,7 +155,6 @@
     margin-top: 1em;
     background-color: black;
     padding: 1.5em 0;
-    /* background: rgba(0, 0, 0, 0.9); */
     background: #181818da;
     border: 1px solid rgba(255, 255, 255, 0.151);
   }
@@ -153,7 +162,7 @@
   .showOnMobile {
     display: block;
   }
-  
+
   .dropDownList li {
     padding: 1em 2.5em;
     transition: background-color 0.1s ease;

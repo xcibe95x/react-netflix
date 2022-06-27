@@ -1,9 +1,9 @@
-import styles from "./DialogCard.module.css";
-import dialogStyles from "../Dialog/Dialog.module.css";
+import { POSTER_API } from "../../api";
 import { Movie, Ratio } from "../../Interfaces";
 import { useMovieLogo } from "../../utils";
-import { POSTER_API } from "../../api";
+import dialogStyles from "../Dialog/Dialog.module.css";
 import LazyLoadImg from "../LazyLoadImg/LazyLoadImg";
+import styles from "./DialogCard.module.css";
 
 const DialogCard = (movie: Movie) => {
   const logo = useMovieLogo(movie.id);

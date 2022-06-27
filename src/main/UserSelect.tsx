@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
+import { UserContext } from "../Interfaces";
 import styles from "./UserSelect.module.css";
-import { IProfileCard, UserContext } from "../Interfaces";
 
 // Godflex Home Page
 

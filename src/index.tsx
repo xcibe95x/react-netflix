@@ -1,12 +1,11 @@
 import React, { FC, useState } from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navbar } from "./components/Navbar/Navbar";
+import { User, UserContext } from "./Interfaces";
+import Home from "./main/Home";
 import UserSelect from "./main/UserSelect";
 import "./style.css";
-import { Navbar } from "./components/Navbar/Navbar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./main/Home";
-import { Movie, UserContext, User } from "./Interfaces";
-import Dialog from "./components/Dialog/Dialog";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
