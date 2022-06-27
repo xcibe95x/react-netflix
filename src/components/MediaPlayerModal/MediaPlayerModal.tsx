@@ -1,6 +1,6 @@
-import { FC, useContext, useEffect, useRef, useState } from "react";
-import { fetchMovieData, POSTER_API } from "../../api";
-import { Genre, Movie, MovieContext } from "../../Interfaces";
+import { useContext, useEffect, useRef } from "react";
+import { POSTER_API } from "../../api";
+import { MovieContext } from "../../Interfaces";
 import { formatRuntime } from "../../utils";
 import styles from "./MediaPlayerModal.module.css";
 
@@ -9,7 +9,6 @@ export const MediaPlayerModal = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (movie) fetchMovieData(movie.id).then((res) => setMovie(res));
     if (showMediaPlayer) {
       ref.current!.style.top = coords.top + "px";
       ref.current!.style.left = coords.left + "px";

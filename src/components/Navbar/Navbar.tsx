@@ -1,16 +1,8 @@
-import styles from "./Navbar.module.css";
-import Logo from "../../assetsNavbar/navigation/logo.png";
-import Lens from "../../assetsNavbar/navigation/Lensimg.png";
-import Bell from "../../assetsNavbar/navigation/campanella.png";
-import Pp from "../../assetsNavbar/navigation/ProfilePicture3.png";
-import Downicon from "../../assetsNavbar/navigation/Downicon.png";
-import Pen from "../../assetsNavbar/navigation/pen-icon.svg";
-import Accounticon from "../../assetsNavbar/navigation/account-icon.svg";
-import Help from "../../assetsNavbar/navigation/assistance.svg";
-import { useRef, MouseEvent as RMouseEvent, useContext, useMemo, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { MouseEvent as RMouseEvent, useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import Logo from "../../assets/images/logo.png";
 import { UserContext } from "../../Interfaces";
-import {v4 as uuid} from 'uuid';
+import styles from "./Navbar.module.css";
 
 export const Navbar = () => {
   const dropDown = useRef<HTMLUListElement>(null);
@@ -18,30 +10,26 @@ export const Navbar = () => {
   const { loggedUser, setUser, users } = useContext(UserContext);
   const otherUsers = users.filter((el) => loggedUser.name != el.name);
   const navigate = useNavigate();
-  // let location = useLocation();
 
   function closure(dropDownElement: HTMLUListElement) {
     return function closeDropDown(innerEvent: Event) {
       if (!dropDownElement.contains(innerEvent.target as Node)) {
-        dropDownElement.classList.remove(styles.showOnMobile); 
+        dropDownElement.classList.remove(styles.showOnMobile);
         document.body.removeEventListener("click", closeDropDown);
       }
     };
   }
 
-  const toggleDropdown = (
-    event: RMouseEvent,
-    dropDownElement: HTMLUListElement
-  ) => {
+  const toggleDropdown = (event: RMouseEvent, dropDownElement: HTMLUListElement) => {
     dropDownElement.classList.add(styles.showOnMobile);
     event.stopPropagation();
     document.body.addEventListener("click", closure(dropDownElement));
   };
 
   const logOut = () => {
-    setUser({name: "", profilePic: ""})
+    setUser({ name: "", profilePic: "" });
     navigate("/");
-  }
+  };
 
   return (
     <div className={styles.navDesktop}>
@@ -52,51 +40,39 @@ export const Navbar = () => {
             {/* List Hide */}
             <div className={styles.HideButton}>
               <span onClick={(e) => toggleDropdown(e, dropDownMobile.current!)}>Browse</span>
-              <img
-                src={Downicon}
-                alt="downIcon"
-                onClick={(e) => toggleDropdown(e, dropDownMobile.current!)}
-              />
+              <i className="fa-solid fa-caret-down fa-lg" onClick={(e) => toggleDropdown(e, dropDownMobile.current!)} />
             </div>
             {/* List 1 */}
             <ul className={styles.dropDownList} ref={dropDownMobile}>
-              <li key={uuid()} >
-                <span className={styles.active}>
-                  Home
-                </span>
+              <li>
+                <span className={styles.active}>Home</span>
               </li>
-              <li key={uuid()} >
+              <li>
                 <span>Tv Show</span>
               </li>
-              <li key={uuid()} >
+              <li>
                 <span>Movies</span>
               </li>
-              <li key={uuid()} >
+              <li>
                 <span>New and Popular</span>
               </li>
-              <li key={uuid()} >
+              <li>
                 <span>Audio and Subtitles</span>
               </li>
             </ul>
           </div>
           {/* List 2 */}
           <ul className={styles.list}>
-            <li key={uuid()}  className={styles.listHide}>
-              <span>
-                <img src={Lens} alt="imgLens" />
-              </span>
+            <li className={styles.listHide}>
+              <i className="far fa-magnifying-glass"></i>
             </li>
-            <li key={uuid()}  className={styles.listHide}>
-              <span className="GodName">
-                {loggedUser.name}
-              </span>
+            <li className={styles.listHide}>
+              <span className="GodName">{loggedUser.name}</span>
             </li>
-            <li key={uuid()}  className={styles.listHide}>
-              <span>
-                <img src={Bell} alt="imgBell" />
-              </span>
+            <li className={styles.listHide}>
+              <i className="fas fa-bell"></i>
             </li>
-            <li key={uuid()} onClick={(e) => toggleDropdown(e, dropDown.current!)}>
+            <li onClick={(e) => toggleDropdown(e, dropDown.current!)}>
               <span>
                 <img
                   src={require("../../assets/images/" + loggedUser.profilePic)}
@@ -105,34 +81,27 @@ export const Navbar = () => {
                 />
               </span>
             </li>
-            <li key={uuid()}  className={styles.liContainer} onClick={(e) => toggleDropdown(e, dropDown.current!)}>
-                <img
-                  src={Downicon}
-                  alt="imgDropdown"    
-                />
+            <li className={styles.liContainer} onClick={(e) => toggleDropdown(e, dropDown.current!)}>
+              <i className="fas fa-caret-down fa-lg" onClick={(e) => toggleDropdown(e, dropDown.current!)} />
               {/* dropdown ul */}
               <ul className={styles.dropDown} ref={dropDown}>
-                {otherUsers.map((el) => (
-                  <li key={uuid()}  className={styles.liDropdown} onClick={() => setUser(el)} >
-                    <img
-                      src={require("../../assets/images/" +
-                        el.profilePic)}
-                      alt="Other users profile pic"
-                    />
+                {otherUsers.map((el, i) => (
+                  <li key={i} className={styles.liDropdown} onClick={() => setUser(el)}>
+                    <img src={require("../../assets/images/" + el.profilePic)} alt="Other users profile pic" />
                     <span>{el.name}</span>
                   </li>
                 ))}
-                <li key={uuid()}  className={styles.liDropdown}>
-                  <img src={Pen} alt="imgPen" />
+                <li className={styles.liDropdown}>
+                  <i className="fa-solid fa-pen-to-square fa-xl"></i>
                   <span>Manage profiles</span>
                 </li>
                 <hr />
-                <li key={uuid()}  className={styles.liDropdown}>
-                  <img src={Accounticon} alt="imgAI" />
+                <li className={styles.liDropdown}>
+                  <i className="fa-regular fa-user fa-xl"></i>
                   <span>Account</span>
                 </li>
-                <li key={uuid()}  className={styles.liDropdown}>
-                  <img src={Help} alt="imgHelp" />
+                <li className={styles.liDropdown}>
+                  <i className="fa-solid fa-question fa-xl"></i>
                   <span>Service Center</span>
                 </li>
                 <hr />

@@ -1,4 +1,3 @@
-import { create } from "domain";
 import { createContext } from "react";
 
 /**
@@ -91,6 +90,7 @@ export interface CastMember {
 export interface SliderSection {
   sectionTitle: string;
   pageIndex: number;
+  isVisible: boolean;
 }
 
 export enum Ratio {

@@ -1,10 +1,10 @@
-import { FC, useContext, useEffect, useRef, useState } from "react";
-import styles from "./Dialog.module.css";
-import { CastMember, Movie, MovieContext, Ratio } from "../../Interfaces";
+import { useContext, useEffect, useRef, useState } from "react";
 import { fetchCast, fetchSimilarMovies, POSTER_API } from "../../api";
+import { CastMember, Movie, MovieContext, Ratio } from "../../Interfaces";
 import { formatRuntime, useMovieLogo } from "../../utils";
 import DialogCard from "../DialogCard/DialogCard";
 import LazyLoadImg from "../LazyLoadImg/LazyLoadImg";
+import styles from "./Dialog.module.css";
 
 const Dialog = () => {
   const similarMoviesRef = useRef<HTMLDivElement>(null);
@@ -12,7 +12,6 @@ const Dialog = () => {
   const [castArr, setCastArr] = useState<CastMember[]>([]);
   const { movie, showDialog, setShowDialog } = useContext(MovieContext);
   let logo = useMovieLogo(movie?.id);
-
   let ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const Dialog = () => {
   }, [movie, showDialog]);
 
   function closeDialog(e: MouseEvent) {
-    if (!ref.current!.firstElementChild?.contains(e.target as Node)) setShowDialog(false);
+    if (ref.current && !ref.current!.firstElementChild?.contains(e.target as Node)) setShowDialog(false);
   }
 
   return (
@@ -79,16 +78,16 @@ const Dialog = () => {
           </div>
           <div className={styles.dialogTextRight}>
             <p className={styles.rightSection}>
-              <span className={styles.grey}>Cast: </span>
+              <span className={styles.bold}>Cast: </span>
               {castArr.map((castMember, index) => (
-                <a href="">
+                <a href="" key={index}>
                   {castMember.name}
                   {index == castArr.length - 1 ? "" : ", "}
                 </a>
               ))}
             </p>
             <p className={styles.rightSection}>
-              <span className={styles.grey}>Genres: </span>
+              <span className={styles.bold}>Genres: </span>
               {movie?.genres &&
                 movie.genres.map((genere, index) => (
                   <a href="" key={index}>

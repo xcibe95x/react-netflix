@@ -1,9 +1,9 @@
-import { FC, useContext } from "react";
-import { UserContext, User, Ratio } from "../../Interfaces";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Ratio, User, UserContext } from "../../Interfaces";
 
-import styles from "./ProfileCard.module.css";
 import LazyLoadImg from "../LazyLoadImg/LazyLoadImg";
+import styles from "./ProfileCard.module.css";
 
 const ProfileCard = (user: User) => {
   const { loggedUser, setUser } = useContext(UserContext);

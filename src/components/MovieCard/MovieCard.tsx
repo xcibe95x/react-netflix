@@ -1,24 +1,9 @@
-import styles from "./MovieCard.module.css";
-import { Movie, MovieContext, Ratio } from "../../Interfaces";
-import { POSTER_API } from "../../api";
-import { useMovieLogo } from "../../utils";
-import LazyLoadImg from "../LazyLoadImg/LazyLoadImg";
 import { MouseEvent, useContext, useRef } from "react";
-
-/**
- * Calculate and returns the cumulative `offsetTop` of the provided `element` from the top of the document.
- * @param {HTMLElement} element
- * @returns Total `offsteTop` of the element from the top of the document.
- */
-function cumulativeOffset(element: Element | null): number {
-  let top = 0;
-  do {
-    top += (element! as HTMLElement).offsetTop || 0;
-    element = (element! as HTMLElement).offsetParent;
-  } while (element);
-
-  return top;
-}
+import { fetchMovieData, POSTER_API } from "../../api";
+import { Movie, MovieContext, Ratio } from "../../Interfaces";
+import { cumulativeOffset, useMovieLogo } from "../../utils";
+import LazyLoadImg from "../LazyLoadImg/LazyLoadImg";
+import styles from "./MovieCard.module.css";
 
 export const MovieCard: React.FC<{
   movie: Movie;
@@ -30,21 +15,37 @@ export const MovieCard: React.FC<{
   let timer: NodeJS.Timeout | null = null;
 
   function handleMouseEnter(e: MouseEvent) {
-    let rect = ref.current!.getBoundingClientRect();
-    timer = setTimeout(() => {
-      setMovie(movie);
-      setCoords({ top: cumulativeOffset(ref.current!), left: rect.left });
-      setShowMediaPlayer(true);
-    }, 750);
+    if (window.innerWidth > 480) {
+      let rect = ref.current!.getBoundingClientRect();
+      timer = setTimeout(() => {
+        fetchMovieData(movie.id).then((res) => setMovie(res));
+        setCoords({ top: cumulativeOffset(ref.current!), left: rect.left });
+        setShowMediaPlayer(true);
+      }, 750);
+    }
+  }
+
+  function handleClick(e: MouseEvent) {
+    e.stopPropagation();
+    if (window.innerWidth <= 480) {
+      fetchMovieData(movie.id).then((res) => setMovie(res));
+      setShowDialog(true);
+    }
   }
 
   function preventSpawn() {
-    clearTimeout(timer!);
+    if (timer) clearTimeout(timer!);
   }
 
   if (movie.backdrop_path)
     return (
-      <div ref={ref} onMouseEnter={handleMouseEnter} onMouseLeave={preventSpawn} className={styles.movieCard}>
+      <div
+        ref={ref}
+        onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={preventSpawn}
+        className={styles.movieCard}
+      >
         {movie.vote_average > 7.8 && <span className={styles.topTen}></span>}
         {showLogo && <img src={logoPath} className={styles.movieLogo}></img>}
         <LazyLoadImg

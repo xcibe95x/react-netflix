@@ -1,4 +1,4 @@
-import { CastMember, Logo, Movie } from "./Interfaces";
+import { CastMember, Movie } from "./Interfaces";
 
 const BASE_URL = "https://api.themoviedb.org";
 export const POSTER_API = "https://image.tmdb.org/t/p/original";
@@ -14,7 +14,7 @@ export async function fetchMovieLogo(movieId: number): Promise<string> {
   );
   let imgData = await response.json();
   let path = "";
-  if (imgData.logos != undefined && imgData.logos.length > 0) path = POSTER_API + imgData.logos[0].file_path;
+  if (imgData.logos !== undefined && imgData.logos.length > 0) path = POSTER_API + imgData.logos[0].file_path;
   return path;
 }
 
@@ -34,9 +34,7 @@ export async function fetchMovieData(movieId: number): Promise<Movie> {
  * @returns Similar movies data as a `Promise`
  */
 export async function fetchSimilarMovies(movieId: number): Promise<Movie[]> {
-  let response = await fetch(
-    BASE_URL + "/3/movie/" + movieId + "/similar" + "?api_key=" + process.env.REACT_APP_API_KEY
-  );
+  let response = await fetch(BASE_URL + "/3/movie/" + movieId + "/similar?api_key=" + process.env.REACT_APP_API_KEY);
   let json = await response.json();
   return json.results;
 }
